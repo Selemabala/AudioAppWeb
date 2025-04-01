@@ -1,6 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioAppWeb", "AudioAppWeb\AudioAppWeb.csproj", "{F3BCDDCC-675E-4150-8391-EC5A27862911}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioAppWeb", "AudioAppWeb\AudioAppWeb\AudioAppWeb.csproj", "{F3BCDDCC-675E-4150-8391-EC5A27862911}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioApp", "AudioApp\AudioApp.csproj", "{1CDB78FF-B1EC-47E0-A711-7670EBAFB292}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
