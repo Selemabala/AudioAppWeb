@@ -1,0 +1,31 @@
+@page "/developer"
+@inject NavigationManager Navigation
+
+<PageTitle>Developer</PageTitle>
+
+<h3>Developer</h3>
+
+<p>The developer of this Web App is @firstName @secondName @lastName, who developed it in @yearDeveloped.</p>
+<p>You can learn more about Seleman's website  @GetWebsiteUrl() by clicking the button bellow:</p>
+
+<button class="btn btn-success" @onclick="GoToWebsite">
+    Visit developer's website
+</button>
+
+@code {
+    string firstName = "Seleman";
+    string secondName = "Pharles";
+    string lastName = "Mabala";
+    int yearDeveloped = 2025;
+
+    // This method will return the URL as a string so it can be displayed
+    string GetWebsiteUrl()
+    {
+        return "www.selemanmabala.com";
+    }
+
+    void GoToWebsite()
+    {
+        Navigation.NavigateTo("https://www.selemanmabala.com", true);
+    }
+}
