@@ -6,11 +6,11 @@
 <h3>Developer</h3>
 
 <p>The developer of this Web App is @firstName @secondName @lastName, who developed it in @yearDeveloped.</p>
-<p>You can learn more about Seleman's website  @GetWebsiteUrl() by clicking the button bellow:</p>
+<p>You can learn more about developer's website  @GetWebsiteUrl() by clicking the button bellow:</p>
 
-<button class="btn btn-success" @onclick="GoToWebsite">
-    Visit developer's website
-</button>
+<a class="btn btn-success" href="https://www.selemanmabala.com" target="_blank" rel="noopener noreferrer">
+    Meet the developer
+</a>
 
 @code {
     string firstName = "Seleman";
@@ -21,11 +21,8 @@
     // This method will return the URL as a string so it can be displayed
     string GetWebsiteUrl()
     {
-        return "www.selemanmabala.com";
+        return "www.selemanmabala.com"; 
     }
 
-    void GoToWebsite()
-    {
-        Navigation.NavigateTo("https://www.selemanmabala.com", true);
-    }
+  
 }
