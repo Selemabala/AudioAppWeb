@@ -1,11 +1,22 @@
+<div class="story-template">
 <h3>Story name: @StoryToDisplay.Name</h3>   
 <h4>Story price:  @StoryToDisplay.Price</h4>  
-<h5>Story ID: @StoryToDisplay.ID</h5> 
+<h5>Story ID: @StoryToDisplay.ID</h5>
+    <button class="btn btn-primary" @onclick="PlayStory">
+    🎧 Play
+    </button>
 <br/>  
 <h6>..........................</h6>
-<br/>  
+<br/>
+</div>
 @code 
 {
     [Parameter]
     public MainStory StoryToDisplay { get; set; }
+    
+    private void PlayStory()
+    {
+        Console.WriteLine($"Play story: {StoryToDisplay.Name}"); // This is the story and later it will be connected the exactly audio
+        
+    }
 }
