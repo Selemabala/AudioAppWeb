@@ -1,7 +1,36 @@
 @page "/testimonies"
+
 <h3>Testimonies</h3>
 
-@code 
-{
-    
+<p>Hello, @userName!</p>
+
+<p>
+    On this page, you're invited to share your testimony. Why? Because the stories that resonate most with
+    listeners help us improve our storytelling, impact more lives, and adjust our creative direction with purpose.
+</p>
+
+<p>
+    The most appreciated stories may also receive a discount on their publishing price, according to specific 
+    legal terms we’re preparing. Your voice matters—both to us and to those who hear your story.
+</p>
+
+<br/>
+
+<h6>Enter your name:</h6>
+<input @bind="userName" />
+
+<br/><br/>
+
+<p>
+    @userName, we truly value your presence here. Before anything else, we want to express our sincere appreciation.
+</p>
+
+<p>
+    This app exists to build, not to break you. We are not agents of darkness—remember, 
+    the Bible says the thief comes only to steal, kill, and destroy (John 10:10). But we are here on assignment: 
+    to edify your mindset, strengthen your purpose, and bring joy to your journey.
+</p>
+
+@code {
+private string userName = "";
 }

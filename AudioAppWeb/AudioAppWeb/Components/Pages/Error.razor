@@ -34,3 +34,38 @@
         RequestId = Activity.Current?.Id ?? HttpContext?.TraceIdentifier;
 
 }
+
+
+
+<h2>User Registration Form</h2>
+
+<div>
+    <label>Name:</label>
+    <input type="text" @bind="UserName" />
+</div>
+
+<div>
+    <label>Age:</label>
+    <input type="number" @bind="UserAge" />
+</div>
+
+<div>
+    <label>
+        <input type="checkbox" @bind="AgreedToTerms" />
+        I agree to the terms and conditions
+    </label>
+</div>
+
+<hr />
+
+<h3>Preview:</h3>
+<p><strong>Name:</strong> @UserName</p>
+<p><strong>Age:</strong> @UserAge</p>
+<p><strong>Agreed:</strong> @(AgreedToTerms ? "Yes" : "No")</p>
+
+@code {
+    // Two-way binding variables
+    private string UserName = "";
+    private int UserAge = 0;
+    private bool AgreedToTerms = false;
+}
