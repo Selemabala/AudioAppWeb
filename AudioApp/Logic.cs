@@ -5,14 +5,14 @@ namespace AudioApp;
 
 public class Logic
 {
-    public static List<MainStory> FindAllStories(User user, List<MainStory> allStories)
+    public static List<MainStory> FindAllStories(ApplicationUser applicationUser, List<MainStory> allStories)
     {
         List<MainStory> userMainStory = new List<MainStory>();
         foreach (MainStory mainStory in allStories)  
         {
             foreach (Episode episode in mainStory.Episodes)  
             {
-                if (episode.CreatedBy.Id == user.Id)  
+                if (episode.CreatedBy.Id == applicationUser.Id)  
                 {
                     userMainStory.Add(mainStory);
                     break;

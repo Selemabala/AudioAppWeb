@@ -12,11 +12,11 @@ class Program
         UI.DisplayStoriesAvailable();
         List<MainStory> allStories = TestData.GenerateTestStories();
         UI.DisplayMainStoryNames(allStories);
-        List<User> users = TestData.GenerateTestUsers();
+        List<ApplicationUser> users = TestData.GenerateTestUsers();
         UI.DisplayAdminNames(users);
         MainStory story = TestData.GenerateTestStories()[2];
         UI.DisplayEpisodesNames(story);
-        User user1 = TestData.GenerateTestUsers()[1];
+        ApplicationUser user1 = TestData.GenerateTestUsers()[1];
         List<MainStory> allUserStories = Logic.FindAllStories(user1, allStories);
         string name = user1.FirstName;
         UI.DisplayAdminStories(name);

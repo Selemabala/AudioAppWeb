@@ -4,54 +4,51 @@ namespace AudioApp;
 
 public static class TestData
 {
-    public static List<User> GenerateTestUsers()
+    public static List<ApplicationUser> GenerateTestUsers()
     {
-        List<User> users = new List<User>();
-        User user1 = new User();
+        List<ApplicationUser> users = new List<ApplicationUser>();
+        ApplicationUser user1 = new ApplicationUser();
         user1.UserName = "Adam1";
         user1.FirstName = "Adam1";
         user1.MiddleName = "Mc";
         user1.LastName = "Donald";
         user1.Email = "adam1@test.com";
-        user1.Id = 1;
+        user1.Id = "1";
         user1.UserRole = UserRole.Admin;
-        user1.Password = "adam1";
         user1.CountryCode = "+45";
-        user1.PhoneNumber = 123456;
+        user1.PhoneNumber = "123456";
         user1.BankAccountName = "Nordea";
         user1.BankAccountNumber = 12345678;
         user1.DateOfBirth = new DateOnly(2002, 1, 1);
         user1.TheAddress = GenerateTestAddress()[0];
         users.Add(user1);
 
-        User user2 = new User();
+        ApplicationUser user2 = new ApplicationUser();
         user2.UserName = "Adam2";
         user2.FirstName = "Adam2";
         user2.MiddleName = "Bin";
         user2.LastName = "Laden";
         user2.Email = "adam2@test.com";
-        user2.Id = 2;
         user2.UserRole = UserRole.Admin;
-        user2.Password = "adam2";
+    
         user2.CountryCode = "+45";
-        user2.PhoneNumber = 223456;
+        user2.PhoneNumber = "223456";
         user2.BankAccountName = "Nordea";
         user2.BankAccountNumber = 22345678;
         user2.DateOfBirth = new DateOnly(2001, 2, 1);
         user2.TheAddress = GenerateTestAddress()[1];
         users.Add(user2);
 
-        User user3 = new User();
+        ApplicationUser user3 = new ApplicationUser();
         user3.UserName = "Adam3";
         user3.FirstName = "Adam3";
         user3.MiddleName = "Von";
         user3.LastName = "Smitch";
         user3.Email = "adam3@test.com";
-        user3.Id = 3;
+        user3.Id = "3";
         user3.UserRole = UserRole.Customer;
-        user3.Password = "adam3";
         user3.CountryCode = "+45";
-        user3.PhoneNumber = 323456;
+        user3.PhoneNumber = "323456";
         user3.BankAccountName = "Nordea";
         user3.BankAccountNumber = 32345678;
         user3.DateOfBirth = new DateOnly(2000, 3, 1);
@@ -59,17 +56,17 @@ public static class TestData
         users.Add(user3);
 
 
-        User user4 = new User();
+        ApplicationUser user4 = new ApplicationUser();
         user4.UserName = "Adam4";
         user4.FirstName = "Adam4";
         user4.MiddleName = "Van";
         user4.LastName = "Deim";
         user4.Email = "adam4@test.com";
-        user4.Id = 4;
+        user4.Id = "4";
         user4.UserRole = UserRole.Customer;
-        user4.Password = "adam4";
+      
         user4.CountryCode = "+45";
-        user4.PhoneNumber = 423456;
+        user4.PhoneNumber = "423456";
         user4.BankAccountName = "Nordea";
         user4.BankAccountNumber = 42345678;
         user4.DateOfBirth = new DateOnly(2000, 4, 1);

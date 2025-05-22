@@ -1,0 +1,102 @@
+@page "/upload-story"
+@inject IWebHostEnvironment Environment
+@inject ILogger<UploadStory> Logger
+
+<h3>Upload New Episode</h3>
+
+<EditForm Model="episodeModel" OnValidSubmit="HandleSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label>Episode Title:</label>
+        <InputText @bind-Value="episodeModel.Title" />
+    </div>
+
+    <div class="mb-3">
+        <label>Price (USD):</label>
+        <InputNumber @bind-Value="episodeModel.Price"  step="0.01" />
+    </div>
+
+    <div class="mb-3">
+        <label>Age Restricted:</label>
+        <InputSelect @bind-Value="episodeModel.AgeLimit">
+            <option value="">-- Choose --</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </InputSelect>
+    </div>
+
+    <div class="mb-3">
+        <label>Upload MP3:</label>
+        <InputFile OnChange="HandleAudioUpload" accept=".mp3" />
+    </div>
+
+    <div class="mb-3">
+        <label>Upload Cover Image:</label>
+        <InputFile OnChange="HandleImageUpload" accept=".jpg,.jpeg,.png" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Episode</button>
+</EditForm>
+
+@if (submitted)
+{
+    <p class="text-success mt-3">✅ Episode uploaded successfully!</p>
+    <p><strong>Title:</strong> @episodeModel.Title</p>
+    <p><strong>Price:</strong> $@episodeModel.Price</p>
+    <p><strong>Age Restricted:</strong> @(episodeModel.AgeLimit ? "Yes" : "No")</p>
+}
+
+@code {
+    private Episode episodeModel = new();
+    private IBrowserFile? audioFile;
+    private IBrowserFile? imageFile;
+    private bool submitted = false;
+    private long maxSize = 1024 * 1024 * 25; // 25MB
+
+    private void HandleAudioUpload(InputFileChangeEventArgs e)
+    {
+        audioFile = e.File;
+    }
+
+    private void HandleImageUpload(InputFileChangeEventArgs e)
+    {
+        imageFile = e.File;
+    }
+
+    private async Task HandleSubmit()
+    {
+        submitted = true;
+
+        var folder = Path.Combine(Environment.WebRootPath, "episodes", episodeModel.Title);
+        Directory.CreateDirectory(folder);
+
+        try
+        {
+            if (audioFile != null)
+            {
+                var audioPath = Path.Combine(folder, "audio.mp3");
+                await using FileStream fs = new(audioPath, FileMode.Create);
+                await audioFile.OpenReadStream(maxSize).CopyToAsync(fs);
+                episodeModel.AudioPath = $"episodes/{episodeModel.Title}/audio.mp3";
+            }
+
+            if (imageFile != null)
+            {
+                var imagePath = Path.Combine(folder, "cover.jpg");
+                await using FileStream fs = new(imagePath, FileMode.Create);
+                await imageFile.OpenReadStream(maxSize).CopyToAsync(fs);
+                episodeModel.AudioCoverImagePath = $"episodes/{episodeModel.Title}/cover.jpg";
+            }
+
+            episodeModel.DateUploaded = DateTime.Now;
+
+            Logger.LogInformation("Uploaded episode: {Title}", episodeModel.Title);
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Failed to upload episode");
+        }
+    }
+}

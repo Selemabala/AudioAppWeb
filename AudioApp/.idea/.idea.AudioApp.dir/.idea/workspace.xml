@@ -8,9 +8,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55e85181-f7f4-4d2e-9084-b2015473b3e6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/.idea.AudioWebApp/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/.idea.AudioWebApp/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/.idea.AudioWebApp/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/Components/Pages/UploadStory.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/Data/ApplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/AudioApp/xs/project-cache/AudioApp-Debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/AudioApp/xs/project-cache/AudioApp-Debug.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChatBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ChatBox.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Episode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Episode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserConversation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UserConversation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserData/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UserData/ApplicationUser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserData/UserComment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UserData/UserComment.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserMessage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UserMessage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserPost.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UserPost.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/AudioAppWeb.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/AudioAppWeb.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/Components/Pages/Counter.razor" beforeDir="false" afterPath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/Components/Pages/Counter.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/Components/Pages/Developer.razor" beforeDir="false" afterPath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/Components/Pages/Developer.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/Components/Pages/Testimonies.razor" beforeDir="false" afterPath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/Components/Pages/Testimonies.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,26 +36,38 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Selemabala"
+  }
 }]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Selemabala/AudioAppWeb.git",
+    "accountId": "9da65534-eeb5-4936-a790-e9984a9f5c24"
+  }
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2v2QviyoZFTBX6FYWGxaxFIP47e" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="AudioApp" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -69,6 +97,7 @@
       <option name="presentableId" value="Default" />
       <updated>1743340929966</updated>
       <workItem from="1743340935831" duration="357000" />
+      <workItem from="1747671309790" duration="878000" />
     </task>
     <servers />
   </component>

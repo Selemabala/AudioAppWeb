@@ -16,22 +16,43 @@
 
 <br/>
 
-<h6>Enter your name:</h6>
-<input @bind="userName" @bind:event="oninput" />
+<p>Enter your name</p>
 
 
-<br/><br/>
 
-<p>
-    @userName, we truly value your presence here. Before anything else, we want to express our sincere appreciation.
-</p>
+<InputText @bind-Value="userName" placeholder = "Name"/>
+<br/>
+<p>Enter your age</p>
 
-<p>
-    This app exists to build, not to break you. We are not agents of darkness—remember, 
-    the Bible says the thief comes only to steal, kill, and destroy (John 10:10). But we are here on assignment: 
-    to edify your mindset, strengthen your purpose, and bring joy to your journey.
-</p>
+<InputNumber @bind-Value="userAge" placeholder ="Age"></InputNumber>
 
-@code {
+<input type="text">
+
+@if (@userAge > 18)
+{
+    <p>
+        @userName, we truly value your presence here. Before anything else, we want to express our sincere appreciation.
+    </p>
+
+    <p>
+        This app exists to build, not to break you. We are not agents of darkness—remember, 
+        the Bible says the thief comes only to steal, kill, and destroy (John 10:10). But we are here on assignment: 
+        to edify your mindset, strengthen your purpose, and bring joy to your journey.
+    </p>
+}
+@if (userAge > 0 && userAge < 18)
+{
+    <p>
+        @userName, we truly value your presence here. But you are not qualified to be here. Go and study please
+    </p>
+  
+}
+<br/>
+
+
+@code 
+{
 private string userName = "";
+private int userAge = 0;
+
 }

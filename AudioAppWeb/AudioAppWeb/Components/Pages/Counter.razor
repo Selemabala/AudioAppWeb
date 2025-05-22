@@ -6,17 +6,31 @@
 <h1>Story Counter</h1>
 <p> Here you will have to tell us how many stories do you want to buy </p>
 
-<p role="status">Current count: @currentCount</p>
+@if (@currentCount > 0)
+{
+    <p role="status">Current count: @currentCount</p>  
+}
+else
+{
+  @warningMessage;  
+  <br/> 
+}
+ 
+<br/>   
 
 <button class="btn btn-primary" @onclick="IncrementCount">Add Story</button>
 
 <button class="btn btn-primary" @onclick="DicrementCount">Reduce Story</button>
-<br />
-<p> You want to buy a total number of @currentCount stories </p>
+<br/>
+@if (@currentCount > 0)
+{
+    <p> You want to buy a total number of @currentCount stories </p>
+}
+
 
 @if(@currentCount> @Constants.FIVE_STORIES)
 {
-<p> Because you bought more than five stories you discount is @Constants.TWO_PERCENT% to each story </p>
+<p> Because you bought more than five stories your discount is @Constants.TWO_PERCENT% to each story </p>
 }
 
 @code {
@@ -37,7 +51,7 @@
         }
         else
         {
-            warningMessage = "⚠️ You can't go below 0 stories.";
+            warningMessage = "⚠️Idiot, You can't go below 0 stories.";
         }
     }
 

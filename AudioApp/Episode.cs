@@ -8,6 +8,6 @@ public class Episode
     public string AudioPath { get; set;}
     public bool AgeLimit  { get; set;}
     public DateTime DateUploaded { get; set; }
-    public User CreatedBy { get; set;}
+    public ApplicationUser CreatedBy { get; set;}
     public string AudioCoverImagePath { get; set;}
 }

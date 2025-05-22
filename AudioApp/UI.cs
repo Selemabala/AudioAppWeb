@@ -71,9 +71,9 @@ public class UI
         }
         Console.WriteLine($"The cost of all episodes is {allPrice}"); 
     }
-    public static void DisplayAdminNames(List<User> users)
+    public static void DisplayAdminNames(List<ApplicationUser> users)
     {
-        foreach (User user in users)
+        foreach (ApplicationUser user in users)
         {
             if (user.UserRole == UserRole.Admin)
             {

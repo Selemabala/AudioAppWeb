@@ -1,28 +1,33 @@
 ﻿@page "/stories"
-@using Components.Shared
-@using AudioAppWeb.Components.Shared
 <PageTitle>Stories</PageTitle>
+<AuthorizeView>
+    <Authorized>
+        <h1>Available Stories</h1>
 
-<h1>Available Stories</h1>
+        <p>This page presents the list of all stories.</p>
 
-<p>This page presents the list of all stories.</p>
+        @if (stories == null)
+        {
+            <p>
+                <em>Loading...</em>
+            </p>
+        }
+        else
+        {
+            @foreach (MainStory story in stories)
+            {
+                <MainStoryDisplay StoryToDisplay=@story />
 
-@if (stories == null)
-{
-    <p>
-        <em>Loading...</em>
-    </p>
-}
-else
-{
-    @foreach (MainStory story in stories) 
-    {
-        <MainStoryDisplay StoryToDisplay=@story /> 
-        
-        <br />
-    }
-    
-}
+                <br />
+            }
+
+        }
+
+    </Authorized>
+    <NotAuthorized>
+       You need to login first
+    </NotAuthorized>
+</AuthorizeView>
 
 @code {
     List<MainStory> stories = AudioApp.TestData.GenerateTestStories();
