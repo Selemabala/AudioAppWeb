@@ -7,27 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55e85181-f7f4-4d2e-9084-b2015473b3e6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/Components/Pages/UploadStory.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/Data/ApplicationDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/AudioApp/xs/project-cache/AudioApp-Debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/AudioApp/xs/project-cache/AudioApp-Debug.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChatBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ChatBox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Episode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Episode.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserConversation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UserConversation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserData/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UserData/ApplicationUser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserData/UserComment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UserData/UserComment.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserMessage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UserMessage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserPost.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UserPost.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/AudioAppWeb.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/AudioAppWeb.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/Components/Pages/Counter.razor" beforeDir="false" afterPath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/Components/Pages/Counter.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/Components/Pages/Developer.razor" beforeDir="false" afterPath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/Components/Pages/Developer.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/Components/Pages/Testimonies.razor" beforeDir="false" afterPath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/Components/Pages/Testimonies.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AudioAppWeb/AudioAppWeb/Program.cs" afterDir="false" />
-    </list>
+    <list default="true" id="55e85181-f7f4-4d2e-9084-b2015473b3e6" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,18 +16,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Selemabala"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Selemabala&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Selemabala/AudioAppWeb.git",
-    "accountId": "9da65534-eeb5-4936-a790-e9984a9f5c24"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Selemabala/AudioAppWeb.git&quot;,
+    &quot;accountId&quot;: &quot;9da65534-eeb5-4936-a790-e9984a9f5c24&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -56,18 +36,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="AudioApp" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -75,8 +56,13 @@
       <option name="WORKING_DIRECTORY" value="" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="PTY_MODE" value="Auto" />
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="AUTO_ATTACH_CHILDREN" value="0" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
       <option name="PROJECT_PATH" value="$PROJECT_DIR$/AudioApp.csproj" />
       <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
@@ -98,6 +84,7 @@
       <updated>1743340929966</updated>
       <workItem from="1743340935831" duration="357000" />
       <workItem from="1747671309790" duration="878000" />
+      <workItem from="1748612563071" duration="62000" />
     </task>
     <servers />
   </component>
@@ -107,5 +94,23 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.Tasks.TaskCanceledException" breakIfHandledByOtherCode="false" displayValue="System.Threading.Tasks.TaskCanceledException" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
