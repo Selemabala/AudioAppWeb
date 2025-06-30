@@ -1,36 +1,49 @@
 ﻿@page "/stories"
+@using Humanizer
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthProvider
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
 <PageTitle>Stories</PageTitle>
 <AuthorizeView>
     <Authorized>
         <h1>Available Stories</h1>
 
         <p>This page presents the list of all stories.</p>
-
-        @if (stories == null)
+        
+        @if (isLoading)
         {
-            <p>
-                <em>Loading...</em>
-            </p>
+            <p>Loading stories...</p>
+        }
+        else if (stories.Count == 0)
+        {
+            <p>No stories found...</p>
         }
         else
         {
-            @foreach (MainStory story in stories)
+            @foreach (var story in stories)
             {
-                <MainStoryDisplay StoryToDisplay=@story />
-
-                <br />
+                <MainStoryDisplay StoryToDisplay="@story" />
+                <br/>
             }
-
         }
-
+        
     </Authorized>
     <NotAuthorized>
        You need to login first
     </NotAuthorized>
 </AuthorizeView>
 
-@code {
-    List<MainStory> stories = AudioApp.TestData.GenerateTestStories();
-}
+@code
+{
+    List<MainStory> stories = AudioApp.TestData.GenerateTestStories();//todo get storieds from database
+    bool isLoading = true;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(1000);
+        stories = AudioApp.TestData.GenerateTestStories();
+        isLoading = false;
 
+    }
 }

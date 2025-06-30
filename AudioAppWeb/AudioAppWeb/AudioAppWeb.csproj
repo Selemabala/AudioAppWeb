@@ -25,6 +25,8 @@
     <ItemGroup>
       <_ContentIncludedByDefault Remove="Components\Pages\Auth\Login.razor" />
       <_ContentIncludedByDefault Remove="Components\Pages\Auth\Register.razor" />
+      <_ContentIncludedByDefault Remove="wwwroot\episodes\Mama\audio.mp3" />
+      <_ContentIncludedByDefault Remove="wwwroot\episodes\Mama\cover.jpg" />
     </ItemGroup>
 
 </Project>

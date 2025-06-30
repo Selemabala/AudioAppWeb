@@ -1,102 +1,61 @@
 @page "/upload-story"
 @inject IWebHostEnvironment Environment
-@inject ILogger<UploadStory> Logger
 
-<h3>Upload New Episode</h3>
+<h3>Create Main Story</h3>
 
-<EditForm Model="episodeModel" OnValidSubmit="HandleSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-
-    <div class="mb-3">
-        <label>Episode Title:</label>
-        <InputText @bind-Value="episodeModel.Title" />
-    </div>
-
-    <div class="mb-3">
-        <label>Price (USD):</label>
-        <InputNumber @bind-Value="episodeModel.Price"  step="0.01" />
-    </div>
-
-    <div class="mb-3">
-        <label>Age Restricted:</label>
-        <InputSelect @bind-Value="episodeModel.AgeLimit">
-            <option value="">-- Choose --</option>
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-        </InputSelect>
-    </div>
-
-    <div class="mb-3">
-        <label>Upload MP3:</label>
-        <InputFile OnChange="HandleAudioUpload" accept=".mp3" />
-    </div>
-
-    <div class="mb-3">
-        <label>Upload Cover Image:</label>
-        <InputFile OnChange="HandleImageUpload" accept=".jpg,.jpeg,.png" />
-    </div>
-
-    <button type="submit" class="btn btn-primary">Submit Episode</button>
+<EditForm Model="Story" OnValidSubmit="SaveStory">
+    <InputText @bind-Value="Story.Name" placeholder="Story name" />
+    <br />
+    <InputNumber @bind-Value="Story.Price" placeholder="Price" />
+    <br />
+    <InputFile OnChange="SelectImage" accept="image/*" />
+    <br />
+    <button type="submit">Save Story</button>
 </EditForm>
 
-@if (submitted)
+@if (Message != null && Message != "")
 {
-    <p class="text-success mt-3">✅ Episode uploaded successfully!</p>
-    <p><strong>Title:</strong> @episodeModel.Title</p>
-    <p><strong>Price:</strong> $@episodeModel.Price</p>
-    <p><strong>Age Restricted:</strong> @(episodeModel.AgeLimit ? "Yes" : "No")</p>
+    <p>@Message</p>
+}
+
+@if (Message != null && Message != "")
+{
+    <p>Cover Image:</p>
+    <img src="@Story.CoverPath" alt="Cover" width="200" />
 }
 
 @code {
-    private Episode episodeModel = new();
-    private IBrowserFile? audioFile;
-    private IBrowserFile? imageFile;
-    private bool submitted = false;
-    private long maxSize = 1024 * 1024 * 25; // 25MB
+    private MainStory Story = new();
+    private IBrowserFile SelectedImage;
+    private string Message;
 
-    private void HandleAudioUpload(InputFileChangeEventArgs e)
+    private void SelectImage(InputFileChangeEventArgs fileInfo)
     {
-        audioFile = e.File;
+        SelectedImage = fileInfo.File;
     }
 
-    private void HandleImageUpload(InputFileChangeEventArgs e)
+    private async Task SaveStory()
     {
-        imageFile = e.File;
-    }
+        if (string.IsNullOrWhiteSpace(Story.Name) || SelectedImage == null)
+        {
+            Message = "Please enter a story name and select an image.";
+            return;
+        }
 
-    private async Task HandleSubmit()
-    {
-        submitted = true;
-
-        var folder = Path.Combine(Environment.WebRootPath, "episodes", episodeModel.Title);
+        var folder = Path.Combine(Environment.WebRootPath, "story-covers");
         Directory.CreateDirectory(folder);
 
-        try
-        {
-            if (audioFile != null)
-            {
-                var audioPath = Path.Combine(folder, "audio.mp3");
-                await using FileStream fs = new(audioPath, FileMode.Create);
-                await audioFile.OpenReadStream(maxSize).CopyToAsync(fs);
-                episodeModel.AudioPath = $"episodes/{episodeModel.Title}/audio.mp3";
-            }
+        var filePath = Path.Combine(folder, SelectedImage.Name);
 
-            if (imageFile != null)
-            {
-                var imagePath = Path.Combine(folder, "cover.jpg");
-                await using FileStream fs = new(imagePath, FileMode.Create);
-                await imageFile.OpenReadStream(maxSize).CopyToAsync(fs);
-                episodeModel.AudioCoverImagePath = $"episodes/{episodeModel.Title}/cover.jpg";
-            }
+        using var fs = File.Create(filePath);
+        var stream = SelectedImage.OpenReadStream(5 * 1024 * 1024);
+        await stream.CopyToAsync(fs);
 
-            episodeModel.DateUploaded = DateTime.Now;
+        Story.CoverPath = "/story-covers/" + SelectedImage.Name;
 
-            Logger.LogInformation("Uploaded episode: {Title}", episodeModel.Title);
-        }
-        catch (Exception ex)
-        {
-            Logger.LogError(ex, "Failed to upload episode");
-        }
+        Message = $"Story '{Story.Name}' saved successfully.";
+
+        SelectedImage = null;
     }
 }
+

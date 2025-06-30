@@ -240,7 +240,7 @@ public static class TestData
         mainStory1.ID = 1;
         mainStory1.Price = 100;
         mainStory1.Name = "mama";
-        mainStory1.CoverPath = "/Users/mabala/Desktop/7feb/Stories/mama.png";
+        mainStory1.CoverPath = "/episodes/Mama/cover.jpg";
         mainStory1.Episodes = GenerateTestStoryEpisodesMama();
         stories.Add(mainStory1);
 

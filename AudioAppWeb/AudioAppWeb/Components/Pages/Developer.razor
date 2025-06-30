@@ -1,28 +1,63 @@
 @page "/developer"
+@using Microsoft.AspNetCore.Components.Authorization
 @inject NavigationManager Navigation
+@inject AuthenticationStateProvider AuthProvider
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
 
 <PageTitle>Developer</PageTitle>
 
-<h3>Developer</h3>
+<AuthorizeView>
+    <Authorized>
+        <h3>Developer</h3>
+        <p>The developer of this Web App is @firstName @secondName @lastName, who developed it in @yearDeveloped.</p>
+        @if(User.UserRole == UserRole.Admin)
+        {
+            <p>You can learn more about developer's website  @GetWebsiteUrl() by clicking the button bellow:</p>
 
-<p>The developer of this Web App is @firstName @secondName @lastName, who developed it in @yearDeveloped.</p>
-<p>You can learn more about developer's website  @GetWebsiteUrl() by clicking the button bellow:</p>
+            <a class="btn btn-success" href="https://@GetWebsiteUrl()" target="_blank" rel="noopener noreferrer">
+                Meet the developer
+            </a>
+        }
+    </Authorized> 
+    
+   
+    <NotAuthorized>
+        <p>This section is visible only to guests. Please log in to unlock more features.</p>
+    </NotAuthorized>
+</AuthorizeView>
 
-<a class="btn btn-success" href="https://@GetWebsiteUrl()" target="_blank" rel="noopener noreferrer">
-    Meet the developer
-</a>
 
-@code {
+@code
+{
     string firstName = "Seleman";
     string secondName = "Pharles";
     string lastName = "Mabala";
     int yearDeveloped = 2025;
+    ApplicationUser User;
 
     // This method will return the URL as a string so it can be displayed
     string GetWebsiteUrl()
     {
-        return "www.selemanmabala.com"; 
+        return "www.selemanmabala.com";
     }
 
-  
+    protected override async Task OnParametersSetAsync()
+    {
+        var authState = await AuthProvider.GetAuthenticationStateAsync();
+        var claims = authState.User;
+        var currentUser = await UserManager.GetUserAsync(claims);
+        User = currentUser;
+    }
+
+
+
+    async void UserDetails()
+    {
+        var authState = await AuthProvider.GetAuthenticationStateAsync();
+        var claims = authState.User;
+        var currentUser = await UserManager.GetUserAsync(claims);
+        User = currentUser;
+    }
 }
