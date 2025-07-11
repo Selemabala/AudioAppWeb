@@ -130,6 +130,7 @@ namespace AudioAppWeb.Migrations
                     LoginProvider = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
                     ProviderKey = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "TEXT", nullable: true),
+             
                     UserId = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
