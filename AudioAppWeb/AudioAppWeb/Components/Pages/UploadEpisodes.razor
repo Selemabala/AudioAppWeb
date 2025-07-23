@@ -1,0 +1,112 @@
+@page "/upload-episode"
+@inject IWebHostEnvironment Environment
+@inject Data.AudioAppWebContext Db
+
+<h3>Upload Episode</h3>
+
+<EditForm Model="Episode" OnValidSubmit="SaveEpisode">
+    <p>Title:</p>
+    <InputText @bind-Value="Episode.Title" placeholder="Episode title" />
+    <br />
+
+    <p>Price:</p>
+    <InputNumber @bind-Value="Episode.Price" />
+    <br />
+
+    <p>18+ Content?</p>
+    <InputCheckbox @bind-Value="Episode.AgeLimit" />
+    <br />
+
+    <p>Episode Audio:</p>
+    <InputFile OnChange="SelectAudio" accept="audio/*" />
+    <br />
+
+    <p>Cover Image:</p>
+    <InputFile OnChange="SelectCover" accept="image/*" />
+    <br /><br />
+
+    <button type="submit">Upload Episode</button>
+</EditForm>
+
+@if (!string.IsNullOrEmpty(Message))
+{
+    <p>@Message</p>
+}
+
+@if (!string.IsNullOrEmpty(Episode.AudioPath))
+{
+    <p>Audio Preview:</p>
+    <audio controls>
+        <source src="@Episode.AudioPath" type="audio/mpeg" />
+    </audio>
+}
+
+@if (!string.IsNullOrEmpty(Episode.AudioCoverImagePath))
+{
+    <p>Cover Preview:</p>
+    <img src="@Episode.AudioCoverImagePath" width="200" />
+}
+
+@code {
+    private Episode Episode = new();
+    private IBrowserFile? SelectedAudio;
+    private IBrowserFile? SelectedCover;
+    private string Message = "";
+
+    private void SelectAudio(InputFileChangeEventArgs audioFile)
+    {
+        SelectedAudio = audioFile.File;
+    }
+
+    private void SelectCover(InputFileChangeEventArgs coverImageFile)
+    {
+        SelectedCover = coverImageFile.File;
+    }
+
+    private async Task SaveEpisode()
+    {
+        if (string.IsNullOrWhiteSpace(Episode.Title) || SelectedAudio == null || SelectedCover == null)
+        {
+            Message = "Please fill in the title and select both audio and cover image.";
+            return;
+        }
+
+        // To save the Audio File
+        string audioFolder = Path.Combine(Environment.WebRootPath, "audios");
+        Directory.CreateDirectory(audioFolder);
+
+        string cleanAudioName = Path.GetFileNameWithoutExtension(SelectedAudio.Name);
+        string audioExt = Path.GetExtension(SelectedAudio.Name);
+        string audioFileName = cleanAudioName + "_" + Guid.NewGuid().ToString() + audioExt;
+        string audioPath = Path.Combine(audioFolder, audioFileName);
+
+        using var audioStream = File.Create(audioPath);
+        await SelectedAudio.OpenReadStream(15 * 1024 * 1024).CopyToAsync(audioStream);
+        Episode.AudioPath = "/audios/" + audioFileName;
+
+        // Saving the Cover Image 
+        string coverFolder = Path.Combine(Environment.WebRootPath, "story-covers");
+        Directory.CreateDirectory(coverFolder);
+
+        string cleanCoverName = Path.GetFileNameWithoutExtension(SelectedCover.Name);
+        string coverExt = Path.GetExtension(SelectedCover.Name);
+        string coverFileName = cleanCoverName + "_" + Guid.NewGuid().ToString() + coverExt;
+        string coverPath = Path.Combine(coverFolder, coverFileName);
+
+        using var coverStream = File.Create(coverPath);
+        await SelectedCover.OpenReadStream(5 * 1024 * 1024).CopyToAsync(coverStream);
+        Episode.AudioCoverImagePath = "/story-covers/" + coverFileName;
+
+        // TO Finalize and also  to Save 
+        Episode.DateUploaded = DateTime.Now;
+
+        Db.Episodes.Add(Episode);
+        await Db.SaveChangesAsync();
+
+        Message = $"Episode '{Episode.Title}' uploaded successfully.";
+        Episode = new();
+        SelectedAudio = null;
+        SelectedCover = null;
+        StateHasChanged();
+    }
+}

@@ -10,4 +10,10 @@ public class Episode
     public DateTime DateUploaded { get; set; }
     public ApplicationUser CreatedBy { get; set;}
     public string AudioCoverImagePath { get; set;}
+    
+    public MainStory MainStory { get; set;}
+    
+    public int MainStoryId { get; set;}
+    
+
 }

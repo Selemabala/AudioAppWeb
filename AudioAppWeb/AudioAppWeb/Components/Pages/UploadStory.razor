@@ -1,15 +1,27 @@
 @page "/upload-story"
 @inject IWebHostEnvironment Environment
+@inject Data.AudioAppWebContext Db
+
 
 <h3>Create Main Story</h3>
 
 <EditForm Model="Story" OnValidSubmit="SaveStory">
+    <p>Story Name:</p>
     <InputText @bind-Value="Story.Name" placeholder="Story name" />
     <br />
+
+    <p>Price:</p>
     <InputNumber @bind-Value="Story.Price" placeholder="Price" />
     <br />
+
+    <p>Select Cover Image:</p>
     <InputFile OnChange="SelectImage" accept="image/*" />
     <br />
+
+    <p>Select Intro Audio:</p>
+    <InputFile OnChange="SelectAudio" accept="audio/*" />
+    <br /><br />
+
     <button type="submit">Save Story</button>
 </EditForm>
 
@@ -18,44 +30,93 @@
     <p>@Message</p>
 }
 
-@if (Message != null && Message != "")
+@if (!string.IsNullOrEmpty(Story.CoverPath))
 {
-    <p>Cover Image:</p>
-    <img src="@Story.CoverPath" alt="Cover" width="200" />
+    <p>Cover Preview:</p>
+    <img src="@Story.CoverPath" alt="Cover image" width="200" />
+}
+
+@if (Story.AudioIntroPath != null && Story.AudioIntroPath != "")
+{
+    <p>Intro Audio Preview:</p>
+    <audio controls>
+        <source src="@Story.AudioIntroPath" type="audio/mpeg" />
+         Audio not supported or file missing.
+    </audio>
 }
 
 @code {
-    private MainStory Story = new();
-    private IBrowserFile SelectedImage;
-    private string Message;
+    private MainStory Story = new MainStory();
+    private IBrowserFile? SelectedImage = null;
+    private IBrowserFile? SelectedAudio = null;
+    private string Message = "";
 
     private void SelectImage(InputFileChangeEventArgs fileInfo)
     {
-        SelectedImage = fileInfo.File;
+        if (fileInfo.File != null)
+        {
+            SelectedImage = fileInfo.File;
+        }
+    }
+
+    private void SelectAudio(InputFileChangeEventArgs fileInfo)
+    {
+        if (fileInfo.File != null)
+        {
+            SelectedAudio = fileInfo.File;
+        }
     }
 
     private async Task SaveStory()
     {
-        if (string.IsNullOrWhiteSpace(Story.Name) || SelectedImage == null)
+        if (Story.Name == null || Story.Name.Trim() == "" || SelectedImage == null || SelectedAudio == null)
         {
-            Message = "Please enter a story name and select an image.";
+            Message = "Please enter a story name and select both image and intro audio.";
             return;
         }
 
-        var folder = Path.Combine(Environment.WebRootPath, "story-covers");
-        Directory.CreateDirectory(folder);
+        // To Save Cover Image
+        string coverFolder = Path.Combine(Environment.WebRootPath, "story-covers");
+        Directory.CreateDirectory(coverFolder);
 
-        var filePath = Path.Combine(folder, SelectedImage.Name);
+ 
+        string coverFileName = Path.GetFileNameWithoutExtension(SelectedImage.Name) + "_" + Guid.NewGuid().ToString() + Path.GetExtension(SelectedImage.Name);
 
-        using var fs = File.Create(filePath);
-        var stream = SelectedImage.OpenReadStream(5 * 1024 * 1024);
-        await stream.CopyToAsync(fs);
+        string coverPath = Path.Combine(coverFolder, coverFileName);
 
-        Story.CoverPath = "/story-covers/" + SelectedImage.Name;
 
-        Message = $"Story '{Story.Name}' saved successfully.";
+        using (FileStream coverStream = File.Create(coverPath))
+        {
+            Stream input = SelectedImage.OpenReadStream(5 * 1024 * 1024);
+            await input.CopyToAsync(coverStream);
+        }
 
+        Story.CoverPath = "/story-covers/" + coverFileName;
+
+        // To Save Intro Audio
+        string audioFolder = Path.Combine(Environment.WebRootPath, "audios");
+        Directory.CreateDirectory(audioFolder);
+
+        string audioFileName = Path.GetFileNameWithoutExtension(SelectedAudio.Name) + "_" + Guid.NewGuid().ToString() + Path.GetExtension(SelectedAudio.Name);
+
+        string audioPath = Path.Combine(audioFolder, audioFileName);
+
+        using (FileStream audioStream = File.Create(audioPath))
+        {
+            Stream input = SelectedAudio.OpenReadStream(10 * 1024 * 1024);
+            await input.CopyToAsync(audioStream);
+        }
+
+        Story.AudioIntroPath = "/audios/" + audioFileName;
+
+ 
+        Db.MainStories.Add(Story);
+        await Db.SaveChangesAsync();
+
+        Message = "Story '" + Story.Name + "' uploaded successfully.";
         SelectedImage = null;
+        SelectedAudio = null;
+        
+        StateHasChanged();
     }
 }
-

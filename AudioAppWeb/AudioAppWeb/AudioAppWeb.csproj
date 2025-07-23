@@ -32,6 +32,7 @@
 
     <ItemGroup>
       <Folder Include="wwwroot\audios\" />
+      <Folder Include="wwwroot\story-covers\" />
     </ItemGroup>
 
 </Project>

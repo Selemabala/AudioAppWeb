@@ -1,0 +1,51 @@
+@page "/story-episodes-upload"
+@inject NavigationManager NavigationManager
+
+<h3>Story Upload Control Panel</h3>
+
+@if (!StoryUploaded)
+{
+    <p>Step 1: Upload your story.</p>
+    <button @onclick="GoToStoryUpload">Upload Story</button>
+}
+else
+{
+    <p>Story uploaded.</p>
+
+    <p>Step 2: Upload Episodes.</p>
+    <button @onclick="GoToEpisodeUpload">Upload Episode</button>
+
+    <p>You can upload as many episodes as needed.</p>
+
+    @if (!FinishedUploading)
+    {
+        <button @onclick="FinishUploading">Finish and Save</button>
+    }
+    else
+    {
+        <p>Upload process completed.</p>
+    }
+}
+
+@code {
+    private bool StoryUploaded = false;
+    private bool FinishedUploading = false;
+
+    private void GoToStoryUpload()
+    { 
+        StoryUploaded = true;
+        NavigationManager.NavigateTo("/upload-story");
+    }
+
+    private void GoToEpisodeUpload()
+    {
+        NavigationManager.NavigateTo("/upload-episode"); 
+    }
+
+    private void FinishUploading()
+    {
+        FinishedUploading = true;
+        Console.WriteLine("User finished uploading all episodes.");
+       
+    }
+}
