@@ -4,18 +4,17 @@
 <h3>Story Upload Control Panel</h3>
 <h4>Please follow the steps</h4>
 
-@if (!StoryUploaded)
+@if (_currentStory == null)
 {
     <p>Step 1: Upload your story.</p>
-    <button @onclick="GoToStoryUpload">Upload Story</button>
+    
+    <UploadStory Story="@_currentStory"></UploadStory>
 }
 else
 {
-    <p>Story uploaded.</p>
-
+    
     <p>Step 2: Upload Episodes.</p>
-    <button @onclick="GoToEpisodeUpload">Upload Episode</button>
-
+    <UploadEpisodes @Story = _currentStory></UploadEpisodes>
     <p>You can upload as many episodes as needed.</p>
 
     @if (!FinishedUploading)
@@ -32,12 +31,18 @@ else
     private bool StoryUploaded = false;
     private bool FinishedUploading = false;
 
+    MainStory _currentStory;
+
     private void GoToStoryUpload()
     { 
         StoryUploaded = true;
         NavigationManager.NavigateTo("/upload-story");
     }
 
+    private void GoToDeveloper()
+    {
+        NavigationManager.NavigateTo("/developer");
+    }
     private void GoToEpisodeUpload()
     {
         NavigationManager.NavigateTo("/upload-episode"); 

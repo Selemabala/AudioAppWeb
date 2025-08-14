@@ -48,6 +48,8 @@
 }
 
 @code {
+    
+    [Parameter] public MainStory Story { get; set; }
     private Episode Episode = new();
     private IBrowserFile? SelectedAudio;
     private IBrowserFile? SelectedCover;
