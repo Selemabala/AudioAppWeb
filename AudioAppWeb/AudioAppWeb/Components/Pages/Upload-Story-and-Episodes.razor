@@ -1,20 +1,17 @@
 @page "/story-episodes-upload"
-@inject NavigationManager NavigationManager
 
 <h3>Story Upload Control Panel</h3>
 <h4>Please follow the steps</h4>
 
-@if (_currentStory == null)
+@if (_currentStory == null) //To be more precise we can use @if (_currentStory is null)
 {
     <p>Step 1: Upload your story.</p>
-    
-    <UploadStory Story="@_currentStory"></UploadStory>
+    <UploadStory OnStorySaved="HandleStorySaved" />
 }
 else
 {
-    
-    <p>Step 2: Upload Episodes.</p>
-    <UploadEpisodes @Story = _currentStory></UploadEpisodes>
+    <p>Step 2: Upload Episodes for <strong>@_currentStory.Name</strong>.</p>
+    <UploadEpisodes Story="_currentStory" />
     <p>You can upload as many episodes as needed.</p>
 
     @if (!FinishedUploading)
@@ -28,30 +25,22 @@ else
 }
 
 @code {
-    private bool StoryUploaded = false;
-    private bool FinishedUploading = false;
+    private MainStory? _currentStory;
+    private bool FinishedUploading;
+    private string UserMessage = "";
 
-    MainStory _currentStory;
-
-    private void GoToStoryUpload()
-    { 
-        StoryUploaded = true;
-        NavigationManager.NavigateTo("/upload-story");
-    }
-
-    private void GoToDeveloper()
+    private void HandleStorySaved(MainStory story)
     {
-        NavigationManager.NavigateTo("/developer");
-    }
-    private void GoToEpisodeUpload()
-    {
-        NavigationManager.NavigateTo("/upload-episode"); 
+        _currentStory = story;     // Here the Step 2 will render
+        StateHasChanged();
     }
 
     private void FinishUploading()
     {
         FinishedUploading = true;
-        Console.WriteLine("User finished uploading all episodes.");
-       
+        UserMessage = "Finished uploading all episodes.";  //  visible on page
+        Console.WriteLine("User finished uploading all episodes."); //  Not visible on page, just for the developer
+        // optionally navigate somewhere
+        // NavigationManager.NavigateTo("/developer");
     }
 }
