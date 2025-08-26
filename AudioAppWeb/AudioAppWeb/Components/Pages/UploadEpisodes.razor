@@ -1,6 +1,6 @@
-@page "/upload-episode"
+@* @page "/upload-episode" *@
 @inject IWebHostEnvironment Environment
-@inject Data.AudioAppWebContext Db
+@inject AudioAppWebContext Db
 
 <h3>Upload Episode</h3>
 
@@ -101,7 +101,11 @@
 
         // TO Finalize and also  to Save 
         Episode.DateUploaded = DateTime.Now;
-
+        Episode.MainStory = Story;
+        
+        //example 
+   //     Story.Episodes.Add(Episode);
+    //    Db.MainStories.Add(Story);
         Db.Episodes.Add(Episode);
         await Db.SaveChangesAsync();
 

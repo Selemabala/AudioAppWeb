@@ -3,3 +3,5 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+/AudioAppWeb/AudioAppWeb/wwwroot/audios
+/AudioAppWeb/AudioAppWeb/wwwroot/story-covers

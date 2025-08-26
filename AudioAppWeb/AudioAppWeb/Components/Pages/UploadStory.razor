@@ -1,6 +1,6 @@
-@page "/upload-story"
+@* @page "/upload-story" *@
 @inject IWebHostEnvironment Environment
-@inject Data.AudioAppWebContext Db
+@inject AudioAppWebContext Db
 
 
 <h3>Create Main Story</h3>
@@ -46,6 +46,7 @@
 }
 
 @code {
+    [Parameter] public EventCallback<MainStory> OnStorySaved { get; set; }
     private MainStory Story = new MainStory();
     private IBrowserFile? SelectedImage = null;
     private IBrowserFile? SelectedAudio = null;
@@ -111,12 +112,13 @@
 
  
         Db.MainStories.Add(Story);
-        await Db.SaveChangesAsync();
+        await Db.SaveChangesAsync(); //from here we get the story ID to link in Episodes
 
         Message = "Story '" + Story.Name + "' uploaded successfully.";
-        SelectedImage = null;
-        SelectedAudio = null;
+        await OnStorySaved.InvokeAsync(Story); // This tells the parent
         
-        StateHasChanged();
+        //SelectedImage = null;
+        //SelectedAudio = null;
+        //StateHasChanged();
     }
 }

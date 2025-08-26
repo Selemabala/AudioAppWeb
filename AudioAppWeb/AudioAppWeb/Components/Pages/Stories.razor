@@ -4,6 +4,8 @@
 @inject AuthenticationStateProvider AuthProvider
 @inject UserManager<ApplicationUser> UserManager
 @inject SignInManager<ApplicationUser> SignInManager
+@inject AudioAppWebContext Db
+
 <PageTitle>Stories</PageTitle>
 <AuthorizeView>
     <Authorized>
@@ -24,6 +26,7 @@
             @foreach (var story in stories)
             {
                 <MainStoryDisplay StoryToDisplay="@story" />
+                <p><i>Uploaded: @story.DateCreated.Humanize()</i></p>
                 <br/>
             }
         }
@@ -36,13 +39,14 @@
 
 @code
 {
-    List<MainStory> stories = AudioApp.TestData.GenerateTestStories();//todo get storieds from database
+    List<MainStory> stories = new();//do get stories from database
     bool isLoading = true;
     
     protected override async Task OnInitializedAsync()
     {
         await Task.Delay(1000);
-        stories = AudioApp.TestData.GenerateTestStories();
+        stories = await Db.MainStories.ToListAsync();
+        //stories = await Db.MainStories.AsNoTracking().OrderByDescending(s => s.DateCreated).ToListAsync();
         isLoading = false;
 
     }
