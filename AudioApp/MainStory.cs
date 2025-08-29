@@ -9,5 +9,5 @@ public class MainStory
    public String Name{ get; set; }
    public String CoverPath { get; set; }
    
-   public DateTime DateCreated { get; set; } = DateTime.Now;
+   public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 }

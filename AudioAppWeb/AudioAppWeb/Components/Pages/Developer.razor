@@ -11,7 +11,17 @@
 <AuthorizeView>
     <Authorized>
         <h3>Developer</h3>
-        <p>The developer of this Web App is @firstName @secondName @lastName, who developed it in @yearDeveloped.</p>
+       <p>The developer of this Web App is @firstName @secondName @lastName, who developed it in @yearDeveloped.</p>
+        <p>You can learn more about developer's website  @GetWebsiteUrl() by clicking the button bellow:</p>
+        
+        <h4> Online Presence & Thought Leadership: </h4>
+        <p>Through his website, selemanmabala.com, Seleman publishes articles exploring intersections of emotional intelligence,
+            science and spirituality, and broader reflections on society and governance. </p>
+            
+        <h4>Developer’s Vision for AudioAppWeb:</h4>
+        <p>Driven by interdisciplinary thinking—where policy, technology, and human-centric design converge—Seleman developed AudioAppWeb 
+            to create an intuitive, accessible audio experience rooted in thoughtful, user-focused design.
+            </p>
         @if(User.UserRole == UserRole.Admin)
         {
             <p>You can learn more about developer's website  @GetWebsiteUrl() by clicking the button bellow:</p>
@@ -20,6 +30,10 @@
                 Meet the developer
             </a>
         }
+        <a class="btn btn-success" href="@GetWebsiteUrl()" target="_blank" rel="noopener noreferrer">
+            Meet the developer
+        </a>
+        
     </Authorized> 
     
    
@@ -40,7 +54,7 @@
     // This method will return the URL as a string so it can be displayed
     string GetWebsiteUrl()
     {
-        return "www.selemanmabala.com";
+        return "https://www.selemanmabala.com";
     }
 
     protected override async Task OnParametersSetAsync()
