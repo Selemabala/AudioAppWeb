@@ -7,6 +7,7 @@
 @inject AudioAppWebContext Db
 
 <PageTitle>Stories</PageTitle>
+<div class="stories-page"> 
 <AuthorizeView>
     <Authorized>
         <h1>Available Stories</h1>
@@ -38,7 +39,7 @@
        You need to login first
     </NotAuthorized>
 </AuthorizeView>
-
+</div>
 @code
 {
     List<MainStory> stories = new();//do get stories from database
@@ -46,7 +47,7 @@
     
     protected override async Task OnInitializedAsync()
     {
-        await Task.Delay(1000);
+      
         stories = await Db.MainStories.ToListAsync();
         //stories = await Db.MainStories.AsNoTracking().OrderByDescending(s => s.DateCreated).ToListAsync();
         isLoading = false;

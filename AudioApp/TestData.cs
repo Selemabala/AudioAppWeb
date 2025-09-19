@@ -14,7 +14,7 @@ public static class TestData
         user1.LastName = "Donald";
         user1.Email = "adam1@test.com";
         user1.Id = "1";
-        user1.UserRole = UserRole.Admin;
+        user1.UserRole = UserRole.Uploader;
         user1.CountryCode = "+45";
         user1.PhoneNumber = "123456";
         user1.BankAccountName = "Nordea";
@@ -29,7 +29,7 @@ public static class TestData
         user2.MiddleName = "Bin";
         user2.LastName = "Laden";
         user2.Email = "adam2@test.com";
-        user2.UserRole = UserRole.Admin;
+        user2.UserRole = UserRole.Uploader;
     
         user2.CountryCode = "+45";
         user2.PhoneNumber = "223456";

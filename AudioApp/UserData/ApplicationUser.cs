@@ -17,6 +17,21 @@ public class ApplicationUser : IdentityUser
 
     public override string ToString()
     {
-        return Id + " " + UserName;
+        return $"{UserName} ({UserRole}) born {DateOfBirth}";
+    }
+    
+    // ✅ Calculate age whenever needed (not stored in DB)
+    public int GetAge()
+    {
+        DateTime today = DateTime.Today;
+        int age = today.Year - DateOfBirth.Year;
+
+        if (DateOfBirth.Month > today.Month ||
+            (DateOfBirth.Month == today.Month && DateOfBirth.Day > today.Day))
+        {
+            age--;
+        }
+
+        return age;
     }
 }

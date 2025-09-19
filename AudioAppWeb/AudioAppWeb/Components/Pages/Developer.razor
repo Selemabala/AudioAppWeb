@@ -6,8 +6,9 @@
 @inject UserManager<ApplicationUser> UserManager
 
 
-<PageTitle>Developer</PageTitle>
 
+<PageTitle>Developer</PageTitle>
+<div class="developer-page">
 <AuthorizeView>
     <Authorized>
         <h3>Developer</h3>
@@ -22,7 +23,7 @@
         <p>Driven by interdisciplinary thinking—where policy, technology, and human-centric design converge—Seleman developed AudioAppWeb 
             to create an intuitive, accessible audio experience rooted in thoughtful, user-focused design.
             </p>
-        @if(User.UserRole == UserRole.Admin)
+        @if(User.UserRole == UserRole.Customer)
         {
             <p>You can learn more about developer's website  @GetWebsiteUrl() by clicking the button bellow:</p>
 
@@ -42,7 +43,7 @@
     </NotAuthorized>
 </AuthorizeView>
 
-
+</div>
 @code
 {
     string firstName = "Seleman";

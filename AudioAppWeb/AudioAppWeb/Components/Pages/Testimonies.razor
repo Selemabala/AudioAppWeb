@@ -1,5 +1,6 @@
 @page "/testimonies"
 
+<div class = "testimonies-page">
 <h3>Testimonies</h3>
 
 <p>Hello, @userName!</p>
@@ -25,8 +26,9 @@
 <p>Enter your age</p>
 
 <InputNumber @bind-Value="userAge" placeholder ="Age"></InputNumber>
-
-<input type="text">
+<br/>
+<p>Enter your testimony</p>
+<input type="text" placeholder ="Testimony">
 
 @if (@userAge > 18)
 {
@@ -49,6 +51,7 @@
 }
 <br/>
 
+</div>
 
 @code 
 {

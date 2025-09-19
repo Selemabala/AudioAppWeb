@@ -1,3 +1,5 @@
+using AudioApp.UserData;
+
 namespace AudioApp;
 
 public class MainStory
@@ -8,6 +10,7 @@ public class MainStory
    public double Price{ get; set; }
    public String Name{ get; set; }
    public String CoverPath { get; set; }
+   public ApplicationUser UploadedBy {get; set; }
    
    public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 }

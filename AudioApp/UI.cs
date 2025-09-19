@@ -75,7 +75,7 @@ public class UI
     {
         foreach (ApplicationUser user in users)
         {
-            if (user.UserRole == UserRole.Admin)
+            if (user.UserRole == UserRole.Uploader)
             {
                 Console.Write(user.FirstName);
                 Console.Write(" ");

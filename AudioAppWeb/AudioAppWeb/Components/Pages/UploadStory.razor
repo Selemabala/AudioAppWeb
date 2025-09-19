@@ -30,6 +30,7 @@
     <p>@Message</p>
 }
 
+@*(@if (Story.CoverPath != null && Story.CoverPath != "")) *@
 @if (!string.IsNullOrEmpty(Story.CoverPath))
 {
     <p>Cover Preview:</p>
@@ -122,3 +123,4 @@
         //StateHasChanged();
     }
 }
+
