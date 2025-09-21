@@ -5,7 +5,7 @@ using AudioAppWeb.Components;
 using AudioAppWeb.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using AudioAppWeb.Areas.Identity.Data;
+
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AudioAppWebContextConnection") ?? throw new InvalidOperationException("Connection string 'AudioAppWebContextConnection' not found.");;
@@ -14,7 +14,7 @@ builder.Services.AddDbContext<AudioAppWebContext>(options => options.UseSqlite(c
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<AudioAppWebContext>();
 
-
+builder.Services.AddRazorPages();
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddCascadingAuthenticationState();
