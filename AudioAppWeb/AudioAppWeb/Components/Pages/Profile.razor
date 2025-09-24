@@ -46,6 +46,7 @@ else
             <InputDate @bind-Value="user.DateOfBirth" />
         </div>
 
+        @* 
         <div>
             <label>User Role:</label><br />
             <InputSelect @bind-Value="user.UserRole">
@@ -54,7 +55,14 @@ else
                 <option value="@UserRole.Customer">Customer</option>
             </InputSelect>
         </div>
+        *@
 
+        @* READ-ONLY ROLE DISPLAY This will be a default role, it will be overridden by other roles when the super admin does it  *@
+        
+        <div>
+            <label>User Role:</label><br />
+            <span>@user.UserRole</span>
+        </div>
         <br />
         <button type="submit">Save</button>
     </EditForm>

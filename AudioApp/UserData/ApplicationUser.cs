@@ -12,7 +12,7 @@ public class ApplicationUser : IdentityUser
     public DateOnly DateOfBirth { get; set; }
     public string BankAccountName { get; set; }
     public int BankAccountNumber { get; set; }
-    public UserRole UserRole { get; set; }
+    public UserRole UserRole { get; set; } = UserRole.Customer;
     public List<MainStory> PurchesedStories { get; set; }
 
     public override string ToString()
