@@ -1,4 +1,8 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@inject AuthenticationStateProvider AuthProvider
+@inject UserManager<ApplicationUser> UserManager
+
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">AudioAppWeb</a>
     </div>
@@ -69,11 +73,16 @@
             </NavLink>
         </div>
         
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="available-users" Match="NavLinkMatch.All">
-                <span class="bi bi-available-users" aria-hidden="true"></span> Users
-            </NavLink>
-        </div>
+        
+        @if (CurrentUser?.UserRole == UserRole.SuperAdmin)
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="available-users" Match="NavLinkMatch.All">
+                    <span class="bi bi-available-users" aria-hidden="true"></span> Users
+                </NavLink>
+            </div>
+        }
+        
         <!-- 
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="upload-story" Match="NavLinkMatch.All">
@@ -83,3 +92,16 @@
         -->
     </nav>
 </div>
+
+@code
+{
+    ApplicationUser? CurrentUser;
+
+    protected override async Task OnInitializedAsync()
+    {
+        @* This code is to get current logged-in user*@
+        var authState = await AuthProvider.GetAuthenticationStateAsync();
+        var claims = authState.User;
+        CurrentUser = await UserManager.GetUserAsync(claims);
+    }
+}
