@@ -1,34 +1,59 @@
 ﻿@page "/"
+@inject AuthenticationStateProvider AuthProvider
+@inject UserManager<ApplicationUser> UserManager
 
 <PageTitle>Home</PageTitle>
 
 <div class="home-page">
-<h1>Hello story lovers</h1>
+    @if (CurrentUser != null && (CurrentUser.UserRole == UserRole.Customer || CurrentUser.UserRole == UserRole.SuperAdmin || CurrentUser.UserRole == UserRole.Uploader))
+    {
+        <h1>Hello @CurrentUser.FirstName</h1>
+    }
+    else
+    {
+        <h1>Hello story lovers</h1>
+    }
+  
 
-<h2>🎧 Welcome to Your New Favorite Escape...</h2>
+    <h2>🎧 Welcome to Your New Favorite Escape...</h2>
 
-<div class="welcome-message">
-    <h3>🎧 Where Every Story Has a Voice</h3>
-    
-    <p>
-        Step into a world where words come alive. Whether you're yearning for the thrill of a forbidden love,
-        the drama of political intrigue, the depth of divine truth, or the innocent laughter of children's tales —
-        you're in the right place.
-    </p>
+    <div class="welcome-message">
+        <h3>🎧 Where Every Story Has a Voice</h3>
 
-    <p><em>One tap. One story. A thousand emotions.</em></p>
+        <p>
+            Step into a world where words come alive. Whether you're yearning for the thrill of a forbidden love,
+            the drama of political intrigue, the depth of divine truth, or the innocent laughter of children's tales —
+            you're in the right place.
+        </p>
 
-    <ul>
-        <li>💖 <strong>Love Stories</strong> that stir your soul</li>
-        <li>🗳️ <strong>Political Tales</strong> that awaken your mind</li>
-        <li>✝️ <strong>Religious Journeys</strong> that uplift your spirit</li>
-        <li>🧸 <strong>Children’s Stories</strong> full of wonder and wisdom</li>
-        <li>✨ <strong>And so much more...</strong></li>
-    </ul>
+        <p><em>One tap. One story. A thousand emotions.</em></p>
 
-    <p>
-        <strong>Plug in. Press play. Let the story take you.</strong><br />
-        Because here, every moment is a story worth hearing.
-    </p>
+        <ul>
+            <li>💖 <strong>Love Stories</strong> that stir your soul</li>
+            <li>🗳️ <strong>Political Tales</strong> that awaken your mind</li>
+            <li>✝️ <strong>Religious Journeys</strong> that uplift your spirit</li>
+            <li>🧸 <strong>Children’s Stories</strong> full of wonder and wisdom</li>
+            <li>✨ <strong>And so much more...</strong></li>
+        </ul>
+
+        <p>
+            <strong>Plug in. Press play. Let the story take you.</strong><br/>
+            Because here, every moment is a story worth hearing.
+        </p>
+    </div>
 </div>
-</div>
+
+
+@code
+{
+    private ApplicationUser? CurrentUser;
+
+    protected override async Task OnInitializedAsync()
+    {
+        @*This will get current logged-in user*@
+        var authState = await AuthProvider.GetAuthenticationStateAsync();
+        var claims = authState.User;
+        CurrentUser = await UserManager.GetUserAsync(claims);
+
+    }
+}
