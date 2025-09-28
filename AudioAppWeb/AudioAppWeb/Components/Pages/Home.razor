@@ -13,7 +13,6 @@
     {
         <h1>Hello story lovers</h1>
     }
-  
 
     <h2>🎧 Welcome to Your New Favorite Escape...</h2>
 
@@ -43,17 +42,16 @@
     </div>
 </div>
 
-
 @code
 {
     private ApplicationUser? CurrentUser;
 
+    
     protected override async Task OnInitializedAsync()
     {
         @*This will get current logged-in user*@
         var authState = await AuthProvider.GetAuthenticationStateAsync();
         var claims = authState.User;
         CurrentUser = await UserManager.GetUserAsync(claims);
-
     }
 }
