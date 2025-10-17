@@ -36,7 +36,29 @@
         
     </Authorized>
     <NotAuthorized>
-       You need to login first
+        <p>Here are stories in short. You need to log in to see and listen all our stoprie.</p>
+        
+        <h1>Available Stories</h1>
+        
+        @if (isLoading)
+        {
+            <p>Loading stories...</p>
+        }
+        else if (stories.Count == 0)
+        {
+            <p>No stories found...</p>
+        }
+        else
+        {
+            @foreach (var story in stories)
+            {
+                <MainStoryDisplay StoryToDisplay="@story" />
+                <p><i>Uploaded: @story.DateCreated.Humanize()</i></p>
+                @*<p><i>Uploaded: @story.DateCreated.ToString("MMM yyyy")</i></p>*@
+                @*<p><i>Uploaded: @story.DateCreated.ToString("dd MMM yyyy HH:mm")</i></p>*@
+                <br/>
+            }
+        }
     </NotAuthorized>
 </AuthorizeView>
 </div>
