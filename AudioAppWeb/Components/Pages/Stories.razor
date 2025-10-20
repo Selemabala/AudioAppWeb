@@ -1,0 +1,78 @@
+﻿@page "/stories"
+@using Humanizer
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthProvider
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+@inject AudioAppWebContext Db
+
+<PageTitle>Stories</PageTitle>
+<div class="stories-page"> 
+<AuthorizeView>
+    <Authorized>
+        <h1>Available Stories</h1>
+
+        <p>This page presents the list of all stories.</p>
+        
+        @if (isLoading)
+        {
+            <p>Loading stories...</p>
+        }
+        else if (stories.Count == 0)
+        {
+            <p>No stories found...</p>
+        }
+        else
+        {
+            @foreach (var story in stories)
+            {
+                <MainStoryDisplay StoryToDisplay="@story" />
+                <p><i>Uploaded: @story.DateCreated.Humanize()</i></p>
+                @*<p><i>Uploaded: @story.DateCreated.ToString("MMM yyyy")</i></p>*@
+                @*<p><i>Uploaded: @story.DateCreated.ToString("dd MMM yyyy HH:mm")</i></p>*@
+                <br/>
+            }
+        }
+        
+    </Authorized>
+    <NotAuthorized>
+        <p>Here are stories in short. You need to log in to see and listen all our stoprie.</p>
+        
+        <h1>Available Stories</h1>
+        
+        @if (isLoading)
+        {
+            <p>Loading stories...</p>
+        }
+        else if (stories.Count == 0)
+        {
+            <p>No stories found...</p>
+        }
+        else
+        {
+            @foreach (var story in stories)
+            {
+                <MainStoryDisplay StoryToDisplay="@story" />
+                <p><i>Uploaded: @story.DateCreated.Humanize()</i></p>
+                @*<p><i>Uploaded: @story.DateCreated.ToString("MMM yyyy")</i></p>*@
+                @*<p><i>Uploaded: @story.DateCreated.ToString("dd MMM yyyy HH:mm")</i></p>*@
+                <br/>
+            }
+        }
+    </NotAuthorized>
+</AuthorizeView>
+</div>
+@code
+{
+    List<MainStory> stories = new();//do get stories from database
+    bool isLoading = true;
+    
+    protected override async Task OnInitializedAsync()
+    {
+      
+        stories = await Db.MainStories.ToListAsync();
+        //stories = await Db.MainStories.AsNoTracking().OrderByDescending(s => s.DateCreated).ToListAsync();
+        isLoading = false;
+
+    }
+}

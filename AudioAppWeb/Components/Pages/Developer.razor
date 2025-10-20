@@ -1,0 +1,78 @@
+@page "/developer"
+@using Microsoft.AspNetCore.Components.Authorization
+@inject NavigationManager Navigation
+@inject AuthenticationStateProvider AuthProvider
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+
+<PageTitle>Developer</PageTitle>
+<div class="developer-page">
+<AuthorizeView>
+    <Authorized>
+        <h3>Developer</h3>
+       <p>The developer of this Web App is @firstName @secondName @lastName, who developed it in @yearDeveloped.</p>
+        <p>You can learn more about developer's website  @GetWebsiteUrl() by clicking the button bellow:</p>
+        
+        <h4> Online Presence & Thought Leadership: </h4>
+        <p>Through his website, selemanmabala.com, Seleman publishes articles exploring intersections of emotional intelligence,
+            science and spirituality, and broader reflections on society and governance. </p>
+            
+        <h4>Developer’s Vision for AudioAppWeb:</h4>
+        <p>Driven by interdisciplinary thinking—where policy, technology, and human-centric design converge—Seleman developed AudioAppWeb 
+            to create an intuitive, accessible audio experience rooted in thoughtful, user-focused design.
+            </p>
+        @if(User.UserRole == UserRole.Customer)
+        {
+            <p>You can learn more about developer's website  @GetWebsiteUrl() by clicking the button bellow:</p>
+
+            <a class="btn btn-success" href="https://@GetWebsiteUrl()" target="_blank" rel="noopener noreferrer">
+                Meet the developer
+            </a>
+        }
+        <a class="btn btn-success" href="@GetWebsiteUrl()" target="_blank" rel="noopener noreferrer">
+            Meet the developer
+        </a>
+        
+    </Authorized> 
+    
+   
+    <NotAuthorized>
+        <p>This section is visible only to guests. Please log in to unlock more features.</p>
+    </NotAuthorized>
+</AuthorizeView>
+
+</div>
+@code
+{
+    string firstName = "Seleman";
+    string secondName = "Pharles";
+    string lastName = "Mabala";
+    int yearDeveloped = 2025;
+    ApplicationUser User;
+
+    // This method will return the URL as a string so it can be displayed
+    string GetWebsiteUrl()
+    {
+        return "https://www.selemanmabala.com";
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        var authState = await AuthProvider.GetAuthenticationStateAsync();
+        var claims = authState.User;
+        var currentUser = await UserManager.GetUserAsync(claims);
+        User = currentUser;
+    }
+
+
+
+    async void UserDetails()
+    {
+        var authState = await AuthProvider.GetAuthenticationStateAsync();
+        var claims = authState.User;
+        var currentUser = await UserManager.GetUserAsync(claims);
+        User = currentUser;
+    }
+}

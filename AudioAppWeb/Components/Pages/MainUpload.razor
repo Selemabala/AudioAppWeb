@@ -1,0 +1,116 @@
+@page "/mainupload"
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthProvider
+@inject UserManager<ApplicationUser> UserManager
+
+<div class="mainupload-page">
+    <h3>Story Upload Control Panel</h3>
+    <h4>Please follow the steps</h4>
+
+    @* 1. User must log in *@
+    @if (!isLoggedIn)
+    {
+        <p>Please log in to continue.</p>
+    }
+    @* 2. User must have Uploader role *@
+    else if (!isUploader)
+    {
+        <p>Only Uploaders can access this page.</p>
+    }
+    @* 3. Uploader must enter code *@
+    else if (!codeOk)
+    {
+        <p>You are an Uploader. Enter the upload code:</p>
+        <InputText @bind-Value="enteredCode" />
+        <button @onclick="CheckCode">Submit Code</button>
+
+        @if (infoMessage != null && infoMessage != "")
+        {
+            <p>@infoMessage</p>
+        }
+    }
+    @* 4. Step 1: Upload story *@
+    else if (currentStory == null)
+    {
+        <p>Step 1: Upload your story.</p>
+        <UploadStory OnStorySaved="HandleStorySaved" />
+    }
+    @* 5. Step 2: Upload episodes *@
+    else
+    {
+        <p>Step 2: Upload episodes for <strong>@currentStory.Name</strong></p>
+        <UploadEpisodes Story="currentStory" />
+
+        @if (!finished)
+        {
+            <button @onclick="FinishUploading">Finish and Save</button>
+        }
+        else
+        {
+            <p>Upload process completed.</p>
+        }
+    }
+</div>
+
+@code {
+    private bool isLoggedIn = false;
+    private bool isUploader = false;
+    private bool codeOk = false;
+
+    private string enteredCode;
+    private string infoMessage;
+    private const string UploadCode = "SELEMAN";
+
+    private MainStory currentStory;
+    private bool finished = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var auth = await AuthProvider.GetAuthenticationStateAsync();
+        var user = await UserManager.GetUserAsync(auth.User);
+
+        if (user != null)
+        {
+            isLoggedIn = true;
+            if (user.UserRole == UserRole.Uploader)
+            {
+                isUploader = true;
+            }
+        }
+    }
+
+    private void HandleStorySaved(MainStory story)
+    {
+        currentStory = story;
+    }
+
+    private void FinishUploading()
+    {
+        finished = true;
+    }
+
+    private void CheckCode()
+    {
+        if (!isUploader)
+        {
+            infoMessage = "Only uploaders can enter a code.";
+            return;
+        }
+
+        if (enteredCode == null || enteredCode.Trim() == "")
+        {
+            infoMessage = "Please type a code.";
+            return;
+        }
+
+        if (enteredCode.Trim() == UploadCode)
+        {
+            codeOk = true;
+            infoMessage = "Code accepted. You can upload now.";
+        }
+        else
+        {
+            infoMessage = "Wrong code.";
+        }
+    }
+}

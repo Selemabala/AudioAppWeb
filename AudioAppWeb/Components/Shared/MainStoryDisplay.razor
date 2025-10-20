@@ -1,0 +1,21 @@
+
+<div class="story-template">
+    <h5>Story name: @StoryToDisplay.Name</h5>   
+    <h5>Story price: @StoryToDisplay.Price</h5>  
+    <h5>Story Image:</h5>
+    <img src="@StoryToDisplay.CoverPath" 
+         alt="Cover image for @StoryToDisplay.Name"
+         width="90" />
+
+    <h6>.....................</h6>
+
+
+    <audio src="@StoryToDisplay.AudioIntroPath" controls></audio> 
+    @* <audio src="@StoryToDisplay.AudioIntroPath" controls controlslist="nodownload"></audio>*@
+    <br/>
+</div>
+
+@code {
+    [Parameter]
+    public MainStory StoryToDisplay { get; set; }
+}

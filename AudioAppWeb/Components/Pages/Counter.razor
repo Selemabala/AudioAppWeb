@@ -1,0 +1,62 @@
+@page "/counter"
+@using Constants = AudioAppWeb.Constants.Constants
+
+<PageTitle>Story Counter</PageTitle>
+
+<div class="counter-page">
+<h1>Story Counter</h1>
+<p> Here you will have to tell us how many stories do you want to buy </p>
+
+@if (@currentCount > 0)
+{
+    <p role="status">Current count: @currentCount</p>  
+}
+else
+{
+  @warningMessage;  
+  <br/> 
+}
+ 
+<br/>   
+
+<button class="btn btn-primary" @onclick="IncrementCount">Add Story</button>
+
+<button class="btn btn-primary" @onclick="DicrementCount">Reduce Story</button>
+<br/>
+@if (@currentCount > 0)
+{
+    <p> You want to buy a total number of @currentCount stories </p>
+}
+
+
+@if(@currentCount> @Constants.FIVE_STORIES)
+{
+<p> Because you bought more than five stories your discount is @Constants.TWO_PERCENT% to each story </p>
+}
+
+</div>
+@code {
+    private int currentCount = 0;
+    private string warningMessage;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+    
+    private void DicrementCount()
+    {
+        if (currentCount > 0)
+        {
+            currentCount--;
+            warningMessage = string.Empty; // Clear any old warning
+        }
+        else
+        {
+            warningMessage = "You can't go below 0 stories.";
+        }
+    }
+
+    
+    
+}

@@ -1,0 +1,382 @@
+/* _content/AudioAppWeb/Components/Layout/MainLayout.razor.rz.scp.css */
+.page[b-epss0ug0t5] {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+main[b-epss0ug0t5] {
+    flex: 1;
+}
+
+
+.sidebar[b-epss0ug0t5] {
+    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+}
+
+
+.top-row[b-epss0ug0t5] {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #d6d5d5;
+    justify-content: flex-end;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+}
+
+    .top-row[b-epss0ug0t5]  a, .top-row[b-epss0ug0t5]  .btn-link {
+        white-space: nowrap;
+        margin-left: 1.5rem;
+        text-decoration: none;
+    }
+
+    .top-row[b-epss0ug0t5]  a:hover, .top-row[b-epss0ug0t5]  .btn-link:hover {
+        text-decoration: underline;
+    }
+
+    .top-row[b-epss0ug0t5]  a:first-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+@media (max-width: 640.98px) {
+    .top-row[b-epss0ug0t5] {
+        justify-content: space-between;
+    }
+
+    .top-row[b-epss0ug0t5]  a, .top-row[b-epss0ug0t5]  .btn-link {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 641px) {
+    .page[b-epss0ug0t5] {
+        flex-direction: row;
+    }
+
+    .sidebar[b-epss0ug0t5] {
+        width: 250px;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+    }
+
+    .top-row[b-epss0ug0t5] {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .top-row.auth[b-epss0ug0t5]  a:first-child {
+        flex: 1;
+        text-align: right;
+        width: 0;
+    }
+
+    .top-row[b-epss0ug0t5], article[b-epss0ug0t5] {
+        padding-left: 2rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+
+#blazor-error-ui[b-epss0ug0t5] {
+    color-scheme: light only;
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss[b-epss0ug0t5] {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
+/* _content/AudioAppWeb/Components/Layout/NavMenu.razor.rz.scp.css */
+.navbar-toggler[b-t12wb3qlx3] {
+    appearance: none;
+    cursor: pointer;
+    width: 3.5rem;
+    height: 2.5rem;
+    color: white;
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") no-repeat center/1.75rem rgba(255, 255, 255, 0.1);
+}
+
+.navbar-toggler:checked[b-t12wb3qlx3] {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.top-row[b-t12wb3qlx3] {
+    min-height: 3.5rem;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.navbar-brand[b-t12wb3qlx3] {
+    font-size: 1.1rem;
+}
+
+.bi[b-t12wb3qlx3] {
+    display: inline-block;
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.75rem;
+    top: -1px;
+    background-size: cover;
+}
+
+.bi-house-door-fill-nav-menu[b-t12wb3qlx3] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-house-door-fill' viewBox='0 0 16 16'%3E%3Cpath d='M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z'/%3E%3C/svg%3E");
+}
+
+.bi-plus-square-fill-nav-menu[b-t12wb3qlx3] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-plus-square-fill' viewBox='0 0 16 16'%3E%3Cpath d='M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z'/%3E%3C/svg%3E");
+}
+
+.bi-person-nav-menu[b-t12wb3qlx3] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-person-fill-add' viewBox='0 0 16 16'%3E%3Cpath d='M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0'/%3E%3Cpath d='M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4'/%3E%3C/svg%3E");
+}
+
+
+.bi-login-nav-menu[b-t12wb3qlx3] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-box-arrow-in-right' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M10 3a1 1 0 0 1 1 1v2.5H8.5a.5.5 0 0 0 0 1H11V10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h6zm1.854 5.646a.5.5 0 0 0 0-.708l-2-2a.5.5 0 1 0-.708.708L10.293 8l-1.147 1.146a.5.5 0 0 0 .708.708l2-2z'/%3E%3C/svg%3E");
+}
+
+.bi-login[b-t12wb3qlx3] {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/><path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/></svg>');
+}
+
+.bi-upload-story[b-t12wb3qlx3] {
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'16'%20height%3D'16'%20fill%3D'white'%20viewBox%3D'0%200%2016%2016'%3E%3Cpath%20fill-rule%3D'evenodd'%20d%3D'M3.5%206a.5.5%200%200%200-.5.5v8a.5.5%200%200%200%20.5.5h9a.5.5%200%200%200%20.5-.5v-8a.5.5%200%200%200-.5-.5h-2a.5.5%200%200%201%200-1h2A1.5%201.5%200%200%201%2014%206.5v8a1.5%201.5%200%200%201-1.5%201.5h-9A1.5%201.5%200%200%201%202%2014.5v-8A1.5%201.5%200%200%201%203.5%205h2a.5.5%200%200%201%200%201z'%2F%3E%3Cpath%20fill-rule%3D'evenodd'%20d%3D'M7.646%2011.854a.5.5%200%200%200%20.708%200l3-3a.5.5%200%200%200-.708-.708L8.5%2010.293V1.5a.5.5%200%200%200-1%200v8.793L5.354%208.146a.5.5%200%201%200-.708.708z'%2F%3E%3C%2Fsvg%3E");
+}
+
+.bi-testimony-nav-menu[b-t12wb3qlx3]
+{
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22white%22%20class%3D%22bi%20bi-chat-square-text%22%20viewBox%3D%220%200%2016%2016%22%3E%0A%20%20%3Cpath%20d%3D%22M14%201a1%201%200%200%201%201%201v8a1%201%200%200%201-1%201h-2.5a2%202%200%200%200-1.6.8L8%2014.333%206.1%2011.8a2%202%200%200%200-1.6-.8H2a1%201%200%200%201-1-1V2a1%201%200%200%201%201-1zM2%200a2%202%200%200%200-2%202v8a2%202%200%200%200%202%202h2.5a1%201%200%200%201%20.8.4l1.9%202.533a1%201%200%200%200%201.6%200l1.9-2.533a1%201%200%200%201%20.8-.4H14a2%202%200%200%200%202-2V2a2%202%200%200%200-2-2z%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M3%203.5a.5.5%200%200%201%20.5-.5h9a.5.5%200%200%201%200%201h-9a.5.5%200%200%201-.5-.5M3%206a.5.5%200%200%201%20.5-.5h9a.5.5%200%200%201%200%201h-9A.5.5%200%200%201%203%206m0%202.5a.5.5%200%200%201%20.5-.5h5a.5.5%200%200%201%200%201h-5a.5.5%200%200%201-.5-.5%22%2F%3E%0A%3C%2Fsvg%3E");
+
+}
+
+.bi-logout[b-t12wb3qlx3] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-box-arrow-right' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z'/%3E%3Cpath fill-rule='evenodd' d='M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z'/%3E%3C/svg%3E");
+}
+    .bi-list-nested-nav-menu[b-t12wb3qlx3] 
+{
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-list-nested' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M4.5 11.5A.5.5 0 0 1 5 11h10a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 1 3h10a.5.5 0 0 1 0 1H1a.5.5 0 0 1-.5-.5z'/%3E%3C/svg%3E");
+}
+
+.bi-available-users[b-t12wb3qlx3] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-building-fill-check' viewBox='0 0 16 16'%3E%3Cpath d='M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514'/%3E%3Cpath d='M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7.256A4.5 4.5 0 0 0 12.5 8a4.5 4.5 0 0 0-3.59 1.787A.5.5 0 0 0 9 9.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .39-.187A4.5 4.5 0 0 0 8.027 12H6.5a.5.5 0 0 0-.5.5V16H3a1 1 0 0 1-1-1zm2 1.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5m3 0v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5m3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM4 5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M7.5 5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm2.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M4.5 8a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z'/%3E%3C/svg%3E");
+}
+
+.nav-item[b-t12wb3qlx3] {
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
+}
+
+    .nav-item:first-of-type[b-t12wb3qlx3] {
+        padding-top: 1rem;
+    }
+
+    .nav-item:last-of-type[b-t12wb3qlx3] {
+        padding-bottom: 1rem;
+    }
+
+    .nav-item[b-t12wb3qlx3]  .nav-link {
+        color: #d7d7d7;
+        background: none;
+        border: none;
+        border-radius: 4px;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        line-height: 3rem;
+        width: 100%;
+    }
+
+.nav-item[b-t12wb3qlx3]  a.active {
+    background-color: rgba(255,255,255,0.37);
+    color: white;
+}
+
+.nav-item[b-t12wb3qlx3]  .nav-link:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.nav-scrollable[b-t12wb3qlx3] {
+    display: none;
+}
+
+.navbar-toggler:checked ~ .nav-scrollable[b-t12wb3qlx3] {
+    display: block;
+}
+
+@media (min-width: 641px) {
+    .navbar-toggler[b-t12wb3qlx3] {
+        display: none;
+    }
+
+    .nav-scrollable[b-t12wb3qlx3] {
+        /* Never collapse the sidebar for wide screens */
+        display: block;
+
+        /* Allow sidebar to scroll for tall menus */
+        height: calc(100vh - 3.5rem);
+        overflow-y: auto;
+    }
+}
+/* _content/AudioAppWeb/Components/Pages/AvailableUsers.razor.rz.scp.css */
+.users-page[b-7tpps03tmh] {
+    position: static;
+    left: auto;
+    right: auto;
+    margin: 0;             /* no negative margins */
+    /*margin-left: -2.5rem; */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    /* visuals */
+    min-height: 100vh;
+    padding: 2rem;
+    background: linear-gradient(180deg, rgb(0,100,100) 0%, rgb(200,0,0) 100%);
+    color: rgb(250,255,0);
+    border-radius: 8px;    /* This is for rounded corners so the gradient looks intentional */
+}
+/* _content/AudioAppWeb/Components/Pages/Counter.razor.rz.scp.css */
+.counter-page[b-dxs7vos7f4] {
+    position: static;
+    left: auto;
+    right: auto;
+    margin: 0;             /* no negative margins */
+    /*margin-left: -2.5rem; */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    /* visuals */
+    min-height: 100vh;
+    padding: 2rem;
+    background: linear-gradient(180deg, rgb(100,100,100) 0%, rgb(200,200,200) 100%);
+    color: rgb(250,255,245);
+    border-radius: 8px;    /* This is for rounded corners so the gradient looks intentional */
+}
+/* _content/AudioAppWeb/Components/Pages/Developer.razor.rz.scp.css */
+.developer-page[b-qtkvs39n3e] {
+    position: static;
+    left: auto;
+    right: auto;
+    margin: 0;             /* no negative margins */
+    /*margin-left: -2.5rem; */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    /* visuals */
+    min-height: 100vh;
+    padding: 2rem;
+    background: linear-gradient(180deg, rgb(0,250,6) 0%, rgb(234,247,249) 100%);
+    color: rgb(50,5,5);
+    border-radius: 8px;    /* This is for rounded corners so the gradient looks intentional */
+}
+/* _content/AudioAppWeb/Components/Pages/Home.razor.rz.scp.css */
+.home-page[b-2ezoyhk8kh] {
+    position: static;      
+    left: auto;
+    right: auto;
+    margin: 0;             /* no negative margins */
+    /*margin-left: -2.5rem; */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    /* visuals */
+    min-height: 100vh;
+    padding: 2rem;
+    background: linear-gradient(180deg, rgb(59,130,246) 0%, rgb(34,197,94) 100%);
+    color: rgb(245,250,255);
+    border-radius: 8px;    /* This is for rounded corners so the gradient looks intentional */
+}
+/* _content/AudioAppWeb/Components/Pages/mainUpload.razor.rz.scp.css */
+.mainupload-page[b-zubmf9z4z4] {
+    position: static;
+    left: auto;
+    right: auto;
+    margin: 0;             /* no negative margins */
+    /*margin-left: -2.5rem; */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    /* visuals */
+    min-height: 100vh;
+    padding: 2rem;
+    background: linear-gradient(180deg, rgb(30, 0, 128) 0%, rgb(255, 215, 0) 100%);
+    color: rgb(245,250,255);
+    border-radius: 8px;    /* This is for rounded corners so the gradient looks intentional */
+}
+/* _content/AudioAppWeb/Components/Pages/Profile.razor.rz.scp.css */
+.profile-page[b-yicmhmmhjv] {
+    position: static;
+    left: auto;
+    right: auto;
+    margin: 0;             /* no negative margins */
+    /*margin-left: -2.5rem; */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    /* visuals */
+    min-height: 100vh;
+    padding: 2rem;
+    background: linear-gradient(180deg, rgb(59,130,246) 0%, rgb(34,197,94) 100%);
+    color: rgb(245,250,255);
+    border-radius: 8px;    /* This is for rounded corners so the gradient looks intentional */
+}
+/* _content/AudioAppWeb/Components/Pages/Stories.razor.rz.scp.css */
+.stories-page[b-kmgek6gwcn] {
+    position: static;
+    left: auto;
+    right: auto;
+    margin: 0;             /* no negative margins */
+    /*margin-left: -2.5rem; */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    /* visuals */
+    min-height: 100vh;
+    padding: 2rem;
+    background: linear-gradient(180deg, rgb(59,130,246) 0%, rgb(34,197,94) 100%);
+    color: rgb(245,250,255);
+    border-radius: 8px;    /* This is for rounded corners so the gradient looks intentional */
+}
+/* _content/AudioAppWeb/Components/Pages/Testimonies.razor.rz.scp.css */
+.testimonies-page[b-04entyixtn] {
+    position: static;
+    left: auto;
+    right: auto;
+    margin: 0;             /* no negative margins */
+    /*margin-left: -2.5rem; */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    /* visuals */
+    min-height: 100vh;
+    padding: 2rem;
+    background: linear-gradient(180deg, rgb(0,255,2) 0%, rgb(234,247,249) 100%);
+    color: rgb(50,55,45);
+    border-radius: 8px;    /* This is for rounded corners so the gradient looks intentional */
+}

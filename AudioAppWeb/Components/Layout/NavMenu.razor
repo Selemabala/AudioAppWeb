@@ -1,0 +1,107 @@
+﻿@inject AuthenticationStateProvider AuthProvider
+@inject UserManager<ApplicationUser> UserManager
+
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">AudioAppWeb</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler"/>
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="nav flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="stories">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Stories
+            </NavLink>
+        </div>
+        
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="counter">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="developer">
+                <span class="bi bi-person-nav-menu" aria-hidden="true"></span> Developer
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="testimonies">
+                <span class="bi bi-testimony-nav-menu" aria-hidden="true"></span> Testimonies
+            </NavLink>
+        </div>
+
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Identity/Account/Register">
+                <span class="bi bi-person-nav-menu" aria-hidden="true"></span> Register
+            </NavLink>
+        </div>
+        
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="profile">
+                <span class="bi bi-person-nav-menu" aria-hidden="true"></span> Profile
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Identity/Account/Login" Match="NavLinkMatch.All">
+                <span class="bi bi-login" aria-hidden="true"></span> Login
+            </NavLink>
+        </div>
+        
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Identity/Account/Logout" Match="NavLinkMatch.All">
+                <span class="bi bi-logout" aria-hidden="true"></span> Go out
+            </NavLink>
+        </div>
+        
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="mainupload" Match="NavLinkMatch.All">
+                <span class="bi bi-upload-story" aria-hidden="true"></span> Upload Story
+            </NavLink>
+        </div>
+        
+        
+        @if (CurrentUser?.UserRole == UserRole.SuperAdmin)
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="available-users" Match="NavLinkMatch.All">
+                    <span class="bi bi-available-users" aria-hidden="true"></span> Users
+                </NavLink>
+            </div>
+        }
+        
+        <!-- 
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="upload-story" Match="NavLinkMatch.All">
+                <span class="bi bi-upload-story" aria-hidden="true"></span> UploadStory
+            </NavLink>
+        </div>
+        -->
+    </nav>
+</div>
+
+@code
+{
+    ApplicationUser? CurrentUser;
+
+    protected override async Task OnInitializedAsync()
+    {
+        @* This code is to get current logged-in user*@
+        var authState = await AuthProvider.GetAuthenticationStateAsync();
+        var claims = authState.User;
+        CurrentUser = await UserManager.GetUserAsync(claims);
+    }
+}

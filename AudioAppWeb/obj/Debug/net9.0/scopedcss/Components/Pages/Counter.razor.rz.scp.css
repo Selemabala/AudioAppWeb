@@ -1,0 +1,17 @@
+.counter-page[b-dxs7vos7f4] {
+    position: static;
+    left: auto;
+    right: auto;
+    margin: 0;             /* no negative margins */
+    /*margin-left: -2.5rem; */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    /* visuals */
+    min-height: 100vh;
+    padding: 2rem;
+    background: linear-gradient(180deg, rgb(100,100,100) 0%, rgb(200,200,200) 100%);
+    color: rgb(250,255,245);
+    border-radius: 8px;    /* This is for rounded corners so the gradient looks intentional */
+}

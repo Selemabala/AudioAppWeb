@@ -1,0 +1,138 @@
+@page "/profile"
+@using Microsoft.AspNetCore.Components.Authorization
+@inject UserManager<ApplicationUser> UserManager
+@inject AuthenticationStateProvider AuthProvider
+
+<PageTitle>Profile</PageTitle>
+<div class="profile-page">
+    <h3>My Profile</h3>
+
+    @if (loading)
+    {
+        <p>Loading...</p>
+    }
+    else if (user == null)
+    {
+        <p>Could not load user.</p>
+    }
+    else
+    {
+        @if (!isEditing)
+        {
+            @*This is a READ-ONLY VIEW whereby the user will see their details after they finish filling *@
+            <div>
+                <p><b>Username:</b> @user.UserName</p>
+                <p><b>First Name:</b> @user.FirstName</p>
+                <p><b>Middle Name:</b> @user.MiddleName</p>
+                <p><b>Last Name:</b> @user.LastName</p>
+                <p><b>Date of Birth:</b> @user.DateOfBirth</p>
+                <p><b>User Role:</b> @user.UserRole</p>
+            </div>
+            <button @onclick="EnableEdit">Edit</button>
+        }
+        else
+        {
+            @* This mode is for EDIT. after here the user will see hs or her profle *@
+            <EditForm Model="@user" OnValidSubmit="Save">
+                <DataAnnotationsValidator/>
+                <ValidationSummary/>
+
+                <div>
+                    <label>Username:</label><br/>
+                    <InputText @bind-Value="user.UserName"/>
+                </div>
+
+                <div>
+                    <label>First Name:</label><br/>
+                    <InputText @bind-Value="user.FirstName"/>
+                </div>
+
+                <div>
+                    <label>Middle Name:</label><br/>
+                    <InputText @bind-Value="user.MiddleName"/>
+                </div>
+
+                <div>
+                    <label>Last Name:</label><br/>
+                    <InputText @bind-Value="user.LastName"/>
+                </div>
+
+                <div>
+                    <label>Date of Birth:</label><br/>
+                    <InputDate @bind-Value="user.DateOfBirth"/>
+                </div>
+                
+        @*<div>
+            <label>User Role:</label><br />
+            <InputSelect @bind-Value="user.UserRole">
+                <option value="@UserRole.SuperAdmin">SuperAdmin</option>
+                <option value="@UserRole.Uploader">Uploader</option>
+                <option value="@UserRole.Customer">Customer</option>
+            </InputSelect>
+        </div>*@
+
+                @* READ-ONLY ROLE DISPLAY This will be a default role, it will be overridden by other roles when the super admin does it  *@
+
+                <div>
+                    <label>User Role:</label><br/>
+                    <span>@user.UserRole</span>
+                </div>
+                <br/>
+                <button type="submit">Save</button>
+            </EditForm>
+        }
+
+        @if (!string.IsNullOrEmpty(message))
+        {
+            <p>@message</p>
+        }
+    }
+</div>
+
+@code {
+    private ApplicationUser? user;
+    private string? message;
+    private bool loading = true;
+    private bool isEditing = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var auth = await AuthProvider.GetAuthenticationStateAsync();
+            user = await UserManager.GetUserAsync(auth.User);
+        }
+        catch
+        {
+            user = null;
+        }
+
+        loading = false;
+    }
+
+    private void EnableEdit()
+    {
+        isEditing = true;
+    }
+
+    private async Task Save()
+    {
+        if (user == null)
+        {
+            message = "There is no user to save.";
+            return;
+        }
+
+        var result = await UserManager.UpdateAsync(user);
+        if (result.Succeeded)
+        {
+            message = "Your Profile is successful saved!";
+            isEditing = false;
+        }
+        else
+        {
+            message = "Sorry there was an error while saving profile.";
+        }
+    }
+
+}

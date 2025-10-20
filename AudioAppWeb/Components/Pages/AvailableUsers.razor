@@ -1,0 +1,124 @@
+@page "/available-users"
+@inject AuthenticationStateProvider AuthProvider
+@inject UserManager<ApplicationUser> UserManager
+
+<h3>Registered Users</h3>
+<div class="users-page">
+@if (CurrentUser?.UserRole != UserRole.SuperAdmin)
+{
+    <p> Access denied.</p>
+}
+else
+{
+    @if (!codeAccepted)
+    {
+        <p>This page is only for administrators:</p>
+        <p>Enter access code to view this page:</p>
+        <input @bind="enteredCode" placeholder="Enter code"/>
+        <button @onclick="CheckCode">Submit</button>
+        <p>@infoMessage</p>
+    }
+    else
+    {
+        @if (users == null)
+        {
+            <p>Loading...</p>
+        }
+        else if (users.Count == 0) @*same as if (users.Count < 1) or if (users.Count <= 0)*@
+        {
+            <p>No users found.</p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Date of Birth</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var u in users)
+                {
+                    <tr>
+                        <td>@u.FirstName</td>
+                        <td>@u.DateOfBirth.ToShortDateString()</td>
+                        <td>@u.UserRole</td>
+                        <td>
+                            <button @onclick="() => MakeUploader(u)">Make Uploader</button>
+                            <button @onclick="() => MakeCustomer(u)">Make Customer</button>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+    }
+}
+</div>
+
+@code {
+    ApplicationUser? CurrentUser;
+    List<ApplicationUser>? users;
+    string? enteredCode;
+    bool codeAccepted = false;
+    string infoMessage = "";
+
+    private const string AccessCode = "TANZANIA";
+
+    protected override async Task OnInitializedAsync()
+    {
+        @*This will get current logged-in user*@
+        var authState = await AuthProvider.GetAuthenticationStateAsync();
+        var claims = authState.User;
+        CurrentUser = await UserManager.GetUserAsync(claims);
+
+        @*This will load users only if SuperAdmin*@
+        if (CurrentUser?.UserRole == UserRole.SuperAdmin)
+        {
+            users = UserManager.Users.ToList();
+        }
+    }
+
+    private void CheckCode()
+    {
+        if (string.IsNullOrWhiteSpace(enteredCode)) @*if (enteredCode == null || enteredCode.Trim() == "")*@
+        {
+            infoMessage = "Please enter a code.";
+            return;
+        }
+
+        if (enteredCode.Trim().ToUpper() == AccessCode)
+        {
+            codeAccepted = true;
+            infoMessage = "Access granted.";
+        }
+        else
+        {
+            infoMessage = "Wrong code.";
+        }
+    }
+
+    private async Task MakeUploader(ApplicationUser user)
+    {
+        if (CurrentUser?.UserRole != UserRole.SuperAdmin) return;
+        user.UserRole = UserRole.Uploader;
+        await UserManager.UpdateAsync(user);
+        @* Codes to Refresh user list *@
+        users = UserManager.Users.ToList();
+        StateHasChanged(); @* This will force UI to re-render*@
+    }
+
+    private async Task MakeCustomer(ApplicationUser user)
+    {
+        if (CurrentUser?.UserRole != UserRole.SuperAdmin) return;
+        user.UserRole = UserRole.Customer;
+        await UserManager.UpdateAsync(user);
+        @* Codes to Refresh user list *@
+        users = UserManager.Users.ToList();
+        StateHasChanged(); @* This will force UI to re-render*@
+    }
+
+}
