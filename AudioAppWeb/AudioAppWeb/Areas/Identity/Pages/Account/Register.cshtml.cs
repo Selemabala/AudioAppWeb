@@ -95,6 +95,10 @@ namespace AudioAppWeb.Areas.Identity.Pages.Account
             [Required]
             [Display(Name = "First name")]
             public string FirstName { get; set; }
+            
+            [Required]
+            [Display(Name = "User Name")]
+            public string CustomName { get; set; }
 
             [Required]
             [DataType(DataType.Date)]
@@ -125,10 +129,11 @@ namespace AudioAppWeb.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
-                await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
+                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
 
                 user.FirstName = Input.FirstName;
+                user.CustomName = Input.CustomName;
                 user.DateOfBirth = DateOnly.FromDateTime(Input.DateOfBirth);
                 user.UserRole = UserRole.Customer;
 
