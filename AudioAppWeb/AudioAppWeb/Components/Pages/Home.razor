@@ -7,7 +7,7 @@
 <div class="home-page">
     @if (CurrentUser != null && (CurrentUser.UserRole == UserRole.Customer || CurrentUser.UserRole == UserRole.SuperAdmin || CurrentUser.UserRole == UserRole.Uploader))
     {
-        <h1>Hello @CurrentUser.FirstName</h1>
+        <h1>Hello @CurrentUser.FirstName</h1> 
     }
     else
     {
@@ -22,7 +22,7 @@
         <p>
             Step into a world where words come alive. Whether you're yearning for the thrill of a forbidden love,
             the drama of political intrigue, the depth of divine truth, or the innocent laughter of children's tales —
-            you're in the right place.
+            you are in the right place.
         </p>
 
         <p><em>One tap. One story. A thousand emotions.</em></p>
