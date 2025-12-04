@@ -43,4 +43,10 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="Application.db">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
