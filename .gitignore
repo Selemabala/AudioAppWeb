@@ -5,3 +5,9 @@ riderModule.iml
 /_ReSharper.Caches/
 /AudioAppWeb/AudioAppWeb/wwwroot/audios
 /AudioAppWeb/AudioAppWeb/wwwroot/story-covers
+/.idea
+AudioApp/.DS_Store
+*.user
+AudioAppWeb/.DS_Store
+AudioAppWeb/AudioAppWeb/.DS_Store
+/AudioAppWeb/AudioAppWeb/.idea
