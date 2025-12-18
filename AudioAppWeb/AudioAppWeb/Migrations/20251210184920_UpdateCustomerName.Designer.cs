@@ -3,6 +3,7 @@ using System;
 using AudioAppWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AudioAppWeb.Migrations
 {
     [DbContext(typeof(AudioAppWebContext))]
-    partial class AudioAppWebContextModelSnapshot : ModelSnapshot
+    [Migration("20251210184920_UpdateCustomerName")]
+    partial class UpdateCustomerName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.6");
