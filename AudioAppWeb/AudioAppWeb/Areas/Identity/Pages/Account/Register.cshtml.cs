@@ -124,6 +124,23 @@ namespace AudioAppWeb.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            
+            // Here we check is the model state is valid.
+            // If there is something wrong the page returns so that the user does again
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            
+            // Here we check if the email has never been used 
+            // This prevents doublicate emails
+            var emailExists = await _userManager.FindByEmailAsync(Input.Email);
+            if (emailExists != null)
+            {
+                //Message to show an error that the email exists
+                return Page();
+            }
+            
 
             if (ModelState.IsValid)
             {
