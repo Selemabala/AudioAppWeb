@@ -73,10 +73,6 @@ namespace AudioAppWeb.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [Display(Name = "Username")]
-            public string UserName { get; set; }
-
-            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -135,9 +131,11 @@ namespace AudioAppWeb.Areas.Identity.Pages.Account
             // Here we check if the email has never been used 
             // This prevents doublicate emails
             var emailExists = await _userManager.FindByEmailAsync(Input.Email);
+            //string erorMesssage = "Email already exists.";
             if (emailExists != null)
             {
                 //Message to show an error that the email exists
+                //erorMesssage;
                 return Page();
             }
             
