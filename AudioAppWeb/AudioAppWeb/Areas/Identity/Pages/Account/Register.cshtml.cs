@@ -131,11 +131,14 @@ namespace AudioAppWeb.Areas.Identity.Pages.Account
             // Here we check if the email has never been used 
             // This prevents doublicate emails
             var emailExists = await _userManager.FindByEmailAsync(Input.Email);
-            //string erorMesssage = "Email already exists.";
+            string erorMesssage = "Email already exists.";
             if (emailExists != null)
             {
                 //Message to show an error that the email exists
                 //erorMesssage;
+                
+                ModelState.AddModelError(nameof(Input.Email),erorMesssage);
+
                 return Page();
             }
             
