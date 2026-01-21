@@ -137,7 +137,7 @@ namespace AudioAppWeb.Areas.Identity.Pages.Account
                 //Message to show an error that the email exists
                 //erorMesssage;
                 
-                ModelState.AddModelError(nameof(Input.Email),erorMesssage);
+                ModelState.AddModelError("Input.Email",erorMesssage);
 
                 return Page();
             }
