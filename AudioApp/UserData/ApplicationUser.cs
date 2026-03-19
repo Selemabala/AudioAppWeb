@@ -20,17 +20,29 @@ public class ApplicationUser : IdentityUser
     {
         return $"{UserName} ({UserRole}) born {DateOfBirth}";
     }
+
+    public bool IsOver18()
+    {
+        bool isOver18 = DateOfBirth.ToDateTime(TimeOnly.MinValue) < DateTime.Now.AddYears(-18);
+        return isOver18;
+    }
     
-    // ✅ Calculate age whenever needed (not stored in DB)
+    // Calculate age for the age authorization (not stored in DB)
     public int GetAge()
     {
-        DateTime today = DateTime.Today;
+        //var agex = DateTime.Now - DateOfBirth.ToDateTime(TimeOnly.MinValue);
+        
+        DateOnly today = DateOnly.FromDateTime(DateTime.Today);
+
+        const int OneYear = 1;
+
         int age = today.Year - DateOfBirth.Year;
 
-        if (DateOfBirth.Month > today.Month ||
-            (DateOfBirth.Month == today.Month && DateOfBirth.Day > today.Day))
+        bool birthdayNotReached = today.Month < DateOfBirth.Month || (today.Month == DateOfBirth.Month && today.Day < DateOfBirth.Day);
+
+        if (birthdayNotReached)
         {
-            age--;
+            age = age - OneYear;
         }
 
         return age;

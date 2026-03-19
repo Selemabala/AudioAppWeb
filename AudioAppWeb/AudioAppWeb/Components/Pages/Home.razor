@@ -7,7 +7,7 @@
 <div class="home-page">
     @if (CurrentUser != null && (CurrentUser.UserRole == UserRole.Customer || CurrentUser.UserRole == UserRole.SuperAdmin || CurrentUser.UserRole == UserRole.Uploader))
     {
-        <h1>Hello @CurrentUser.FirstName</h1> 
+        <h1>Hello @CurrentUser.FirstName (@CurrentUser.GetAge())</h1> 
     }
     else
     {
