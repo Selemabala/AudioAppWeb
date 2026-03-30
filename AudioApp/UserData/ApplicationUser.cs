@@ -23,8 +23,16 @@ public class ApplicationUser : IdentityUser
 
     public bool IsOver18()
     {
-        bool isOver18 = DateOfBirth.ToDateTime(TimeOnly.MinValue) < DateTime.Now.AddYears(-18);
-        return isOver18;
+        DateTime now = DateTime.Now;
+        const int ADULT_AGE = 18;
+        if (now >= DateOfBirth.AddYears(ADULT_AGE).ToDateTime(TimeOnly.MinValue))
+        {
+            return true;
+        }
+        return false;
+        
+        //bool isOver18 = DateOfBirth.ToDateTime(TimeOnly.MinValue) < DateTime.Now.AddYears(-18);
+        //return isOver18;
     }
     
     // Calculate age for the age authorization (not stored in DB)
@@ -34,7 +42,7 @@ public class ApplicationUser : IdentityUser
         
         DateOnly today = DateOnly.FromDateTime(DateTime.Today);
 
-        const int OneYear = 1;
+        const int oneYear = 1;
 
         int age = today.Year - DateOfBirth.Year;
 
@@ -42,7 +50,7 @@ public class ApplicationUser : IdentityUser
 
         if (birthdayNotReached)
         {
-            age = age - OneYear;
+            age = age - oneYear;
         }
 
         return age;

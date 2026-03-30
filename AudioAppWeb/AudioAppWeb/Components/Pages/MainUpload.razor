@@ -63,6 +63,7 @@
 
     private MainStory currentStory;
     private bool finished = false;
+    private bool isAdult = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -72,10 +73,12 @@
         if (user != null)
         {
             isLoggedIn = true;
-            if (user.UserRole == UserRole.Uploader)
+            isAdult = user.IsOver18();
+            if (user.UserRole == UserRole.Uploader && isAdult)
             {
                 isUploader = true;
             }
+            
         }
     }
 
